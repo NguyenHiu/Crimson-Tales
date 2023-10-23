@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HeroController : MonoBehaviour
 {
+    public int maxHealth, health;
     public float speed = .1f;
     public float collisionOffset = .02f;
     public SwordController sword;
