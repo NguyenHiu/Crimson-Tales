@@ -27,7 +27,7 @@ public class HeroController : MonoBehaviour
         if (canMove)
         {
             movementInput = Vector2.zero;
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Keypad1))
             {
                 print("attack");
                 SwordAttack();
