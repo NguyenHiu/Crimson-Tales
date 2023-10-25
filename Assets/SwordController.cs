@@ -18,26 +18,37 @@ public class SwordController : MonoBehaviour
     }
 
     public void AttackRight() {
-        swordCollider.enabled = true;
         transform.localPosition = rightAttackOffset;
     }
 
     public void AttackLeft() {
-        swordCollider.enabled = true;
         transform.localPosition = leftAttackOffset;
     }
 
     public void AttackUp() {
-        swordCollider.enabled = true;
         transform.localPosition = upAttackOffset;
     }
 
     public void AttackDown() {
-        swordCollider.enabled = true;
         transform.localPosition = downAttackOffset;
+    }
+
+    public void EnableSwordCollider() {
+        swordCollider.enabled = true;
+    }
+
+    public void DisableSwordCollider() {
+        swordCollider.enabled = false;
     }
 
     public void StopAttack() {
         swordCollider.enabled = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.tag == "Enemy") {
+            GoblinController goblin = other.GetComponentInParent<GoblinController>();
+            goblin.TakeDamage(2);
+        }
     }
 }

@@ -5,21 +5,24 @@ using UnityEngine;
 public class HeroController : MonoBehaviour
 {
     public int maxHealth, health;
-    public float speed = .1f;
-    public float collisionOffset = .02f;
+    float speed = .1f;
+    float collisionOffset = .05f;
     public SwordController sword;
     public Rigidbody2D rb;
     public Animator animator;
+    private SpriteRenderer spriteRender;
     public ContactFilter2D movementFilter;
     private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     private bool canMove = true;
     private int idleSide;
+    private float x = 3f, y = 3f;
     Vector2 movementInput;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRender = GetComponent<SpriteRenderer>();
         canMove = true;
     }
 
@@ -28,7 +31,7 @@ public class HeroController : MonoBehaviour
         if (canMove)
         {
             movementInput = Vector2.zero;
-            if (Input.GetKeyDown(KeyCode.Keypad1))
+            if (Input.GetKeyDown(KeyCode.Z))
             {
                 print("attack");
                 SwordAttack();
@@ -107,6 +110,16 @@ public class HeroController : MonoBehaviour
         }
     }
 
+    public void EnableSwordCollider()
+    {
+        sword.EnableSwordCollider();
+    }
+
+    public void DisableSwordCollider()
+    {
+        sword.DisableSwordCollider();
+    }
+
     public void SwordAttack()
     {
         LockMove();
@@ -139,5 +152,24 @@ public class HeroController : MonoBehaviour
         print("unlock");
         canMove = true;
         sword.StopAttack();
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            animator.SetTrigger("isDeath");
+        }
+        else
+        {
+            animator.SetTrigger("isHurt");
+            x = 0;
+        }
+    }
+
+    public void DestroyHero()
+    {
+        Destroy(gameObject);
     }
 }
