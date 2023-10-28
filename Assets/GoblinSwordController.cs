@@ -32,7 +32,7 @@ public class GoblinSwordController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
             HeroController hero = other.GetComponentInParent<HeroController>();
-            hero.TakeDamage(5);
+            hero.TakeDamage(1);
         }
     }
 }
