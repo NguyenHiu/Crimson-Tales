@@ -8,9 +8,6 @@ public class HeartController : MonoBehaviour
     public Sprite emptyHeart, halfHeart, fullHeart;
     Image image;
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
     void Awake()
     {
         image = GetComponent<Image>();

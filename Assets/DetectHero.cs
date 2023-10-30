@@ -8,12 +8,7 @@ public class DetectHero : MonoBehaviour
 {
     public Collider2D collider2d;
     public GoblinController goblin;
-
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
+    
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player")) {
@@ -22,20 +17,13 @@ public class DetectHero : MonoBehaviour
             if (goblin.transform.position.y > (goblin.heroPosition.y - 0.28f)) {
                 other.GetComponent<HeroController>().SetHighLayerObject();
                 goblin.SetLowLayerObject();
-                print("hero high, goblin low");
             } else {
                 other.GetComponent<HeroController>().SetLowLayerObject();
                 goblin.SetHighLayerObject();
-                print("goblin high, hero low");
             }
         }
     }
 
-    /// <summary>
-    /// Sent when another object leaves a trigger collider attached to
-    /// this object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player")) {

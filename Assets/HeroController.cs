@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class HeroController : MonoBehaviour
 {
     public int maxHealth, health;
-    float speed = .1f;
+    readonly float speed = .1f;
     readonly float collisionOffset = .05f;
     public SwordController sword;
     public Rigidbody2D rb;
@@ -18,7 +18,6 @@ public class HeroController : MonoBehaviour
     private int idleSide;
     Vector2 movementInput;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,62 +28,58 @@ public class HeroController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // print("Hero's position: " + rb.position);
-        if (canMove)
+        if (canMove == false)
+            return;
+
+        movementInput = Vector2.zero;
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            SwordAttack();
+
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            movementInput = Vector2.zero;
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                SwordAttack();
-            }
+            movementInput.x = 1;
+            animator.SetInteger("idleIndex", 2);
+            idleSide = 2;
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            movementInput.x = -1;
+            animator.SetInteger("idleIndex", 1);
+            idleSide = 1;
+        }
 
-            if (Input.GetKey(KeyCode.RightArrow))
-            {
-                movementInput.x = 1;
-                animator.SetInteger("idleIndex", 2);
-                idleSide = 2;
-            }
-            else if (Input.GetKey(KeyCode.LeftArrow))
-            {
-                movementInput.x = -1;
-                animator.SetInteger("idleIndex", 1);
-                idleSide = 1;
-            }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            movementInput.y = -1;
+            animator.SetInteger("idleIndex", 0);
+            idleSide = 0;
+        }
+        else if (Input.GetKey(KeyCode.UpArrow))
+        {
+            movementInput.y = 1;
+            animator.SetInteger("idleIndex", 3);
+            idleSide = 3;
+        }
 
-            if (Input.GetKey(KeyCode.DownArrow))
-            {
-                movementInput.y = -1;
-                animator.SetInteger("idleIndex", 0);
-                idleSide = 0;
-            }
-            else if (Input.GetKey(KeyCode.UpArrow))
-            {
-                movementInput.y = 1;
-                animator.SetInteger("idleIndex", 3);
-                idleSide = 3;
-            }
-            bool success = TryMove(movementInput);
+        bool success = TryMove(movementInput);
+        if (!success)
+        {
+            success = TryMove(new Vector2(movementInput.x, 0));
             if (!success)
-            {
-                success = TryMove(new Vector2(movementInput.x, 0));
-                if (!success)
-                {
-                    success = TryMove(new Vector2(0, movementInput.y));
-                }
-            }
-            animator.SetBool("isRunning", success);
-        } 
+                success = TryMove(new Vector2(0, movementInput.y));
+        }
+        animator.SetBool("isRunning", success);
     }
 
     private bool TryMove(Vector2 movementInput)
     {
         if (movementInput == Vector2.zero || !canMove)
             return false;
+
         float moveSpeed = speed;
+        // Diagonal moves take longer to finish --> lower speed 
         if (movementInput.x != 0 && movementInput.y != 0)
-        {
             moveSpeed = speed * 0.7071f;
-        }
 
         int count = rb.Cast(
             movementInput,
@@ -96,17 +91,20 @@ public class HeroController : MonoBehaviour
             rb.MovePosition(rb.position + movementInput * moveSpeed);
             return true;
         }
+
         int Count = count;
-        for (int i = 0; i < count; ++i) {
-            if (castCollisions[i].collider.tag == "Goblin") {
+        for (int i = 0; i < count; ++i)
+        {
+            if (castCollisions[i].collider.CompareTag("Goblin"))
                 --Count;
-            }
         }
-        if (Count == 0) {
+
+        if (Count == 0)
+        {
             rb.MovePosition(rb.position + movementInput * moveSpeed);
             return true;
         }
-        // print("can not move");
+
         return false;
     }
 
@@ -143,13 +141,11 @@ public class HeroController : MonoBehaviour
 
     public void LockMove()
     {
-        // print("lock");
         canMove = false;
     }
 
     public void UnlockMove()
     {
-        // print("unlock");
         canMove = true;
         sword.StopAttack();
     }
@@ -158,9 +154,7 @@ public class HeroController : MonoBehaviour
     {
         health -= damage;
         if (health <= 0)
-        {
             animator.SetTrigger("isDeath");
-        }
         else
         {
             UnlockMove();
@@ -173,11 +167,13 @@ public class HeroController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void SetHighLayerObject() {
+    public void SetHighLayerObject()
+    {
         spriteRender.sortingOrder = 1;
     }
 
-    public void SetLowLayerObject() {
+    public void SetLowLayerObject()
+    {
         spriteRender.sortingOrder = 0;
     }
 }

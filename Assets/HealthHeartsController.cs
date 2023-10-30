@@ -16,6 +16,7 @@ public class HealthHeartsController : MonoBehaviour
         }
         hearts = new();
     }
+    
     public void DrawHearts() {
         ClearAllHearts();
         int noHeartsNeedToDraw = (int)Math.Ceiling(player.maxHealth/2.0);

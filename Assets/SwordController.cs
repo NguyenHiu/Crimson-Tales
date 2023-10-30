@@ -5,7 +5,6 @@ using UnityEngine;
 public class SwordController : MonoBehaviour
 {
     public Collider2D swordCollider;
-    // Start is called before the first frame update
     private Vector2 downAttackOffset = new(0f, -0.05f);
     private Vector2 upAttackOffset = new(-0.02f, 0.12f);
     private Vector2 rightAttackOffset = new(0.1f, 0.05f);
@@ -17,36 +16,45 @@ public class SwordController : MonoBehaviour
         swordCollider = GetComponent<Collider2D>();
     }
 
-    public void AttackRight() {
+    public void AttackRight()
+    {
         transform.localPosition = rightAttackOffset;
     }
 
-    public void AttackLeft() {
+    public void AttackLeft()
+    {
         transform.localPosition = leftAttackOffset;
     }
 
-    public void AttackUp() {
+    public void AttackUp()
+    {
         transform.localPosition = upAttackOffset;
     }
 
-    public void AttackDown() {
+    public void AttackDown()
+    {
         transform.localPosition = downAttackOffset;
     }
 
-    public void EnableSwordCollider() {
+    public void EnableSwordCollider()
+    {
         swordCollider.enabled = true;
     }
 
-    public void DisableSwordCollider() {
+    public void DisableSwordCollider()
+    {
         swordCollider.enabled = false;
     }
 
-    public void StopAttack() {
+    public void StopAttack()
+    {
         swordCollider.enabled = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Enemy") {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
             GoblinController goblin = other.GetComponentInParent<GoblinController>();
             goblin.TakeDamage(0);
         }

@@ -14,9 +14,11 @@ public class GoblinController : MonoBehaviour
     SpriteRenderer spriteRender;
     Animator animator;
     TextMeshPro text;
+    
     public ContactFilter2D movementFilter;
     public GoblinSwordController sword;
-    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    private readonly List<RaycastHit2D> castCollisions = new();
+
     private Vector2 movementInput = Vector2.zero;
     readonly float speed = .05f;
     readonly float collisionOffset = .05f;
@@ -37,77 +39,82 @@ public class GoblinController : MonoBehaviour
 
     void FixedUpdate()
     {
-        text.text = "HP: " + health;
-        if (canMove)
+        ShowHealth();
+        if (canMove == false)
+            return;
+
+        // flip X Coordinator of Goblin
+        if ((spriteRender.flipX == false &&
+             rb.position.x - heroPosition.x > flipSideOffset) ||
+            (spriteRender.flipX == true &&
+             heroPosition.x - rb.position.x > flipSideOffset))
         {
-            if ((spriteRender.flipX == false &&
-                 rb.position.x - heroPosition.x > flipSideOffset) ||
-                (spriteRender.flipX == true &&
-                 heroPosition.x - rb.position.x > flipSideOffset))
-            {
-                spriteRender.flipX = !spriteRender.flipX;
-            }
-
-            if (gettingKnockback == true)
-            {
-                GetKnockback(heroPosition);
-            }
-
-            else if (heroPosition == Vector2.zero)
-            {
-                animator.SetBool("isWalking", false);
-            }
-
-            else if ((Math.Abs(heroPosition.x - rb.position.x) <= 1) &&
-                     (Math.Abs(heroPosition.y - rb.position.y) <= 0.5))
-            {
-                animator.SetTrigger("isAttack");
-                SwordAttack();
-            }
-
-            else
-            {
-                movementInput = Vector2.zero;
-                if (heroPosition.x > rb.position.x)
-                {
-                    movementInput.x = 1;
-                }
-                else if (heroPosition.x < rb.position.x)
-                {
-                    movementInput.x = -1;
-                }
-                if (heroPosition.y > rb.position.y)
-                {
-                    movementInput.y = 1;
-                }
-                else if (heroPosition.y < rb.position.y)
-                {
-                    movementInput.y = -1;
-                }
-
-                bool success = TryMove(movementInput);
-                if (!success)
-                {
-                    success = TryMove(new Vector2(movementInput.x, 0));
-                    if (!success)
-                    {
-                        success = TryMove(new Vector2(0, movementInput.y));
-                    }
-                }
-                animator.SetBool("isWalking", success);
-            }
+            spriteRender.flipX = !spriteRender.flipX;
         }
+
+        /*
+            Goblin has 4 states:
+                - `Stand`
+                - `Move`
+                - `Attack`
+                - `Hurt`
+        */
+
+        // if `Hurt` --> Get Knockback
+        if (gettingKnockback == true)
+            GetKnockback(heroPosition);
+
+        // if do not detect any Player in the zone --> Standing
+        else if (heroPosition == Vector2.zero)
+            animator.SetBool("isWalking", false);
+
+        // if Player in attack zone --> Attack
+        else if ((Math.Abs(heroPosition.x - rb.position.x) <= 1) &&
+                 (Math.Abs(heroPosition.y - rb.position.y) <= 0.5))
+        {
+            animator.SetTrigger("isAttack");
+            SwordAttack();
+        }
+
+        // else: moving to Player
+        else
+        {
+            movementInput = Vector2.zero;
+            if (heroPosition.x > rb.position.x)
+                movementInput.x = 1;
+            else if (heroPosition.x < rb.position.x)
+                movementInput.x = -1;
+
+            if (heroPosition.y > rb.position.y)
+                movementInput.y = 1;
+            else if (heroPosition.y < rb.position.y)
+                movementInput.y = -1;
+
+            bool success = TryMove(movementInput);
+            if (!success)
+            {
+                success = TryMove(new Vector2(movementInput.x, 0));
+                if (!success)
+                    success = TryMove(new Vector2(0, movementInput.y));
+            }
+            animator.SetBool("isWalking", success);
+        }
+    }
+
+    private void ShowHealth()
+    {
+        text.text = "HP: " + health;
     }
 
     private bool TryMove(Vector2 movementInput)
     {
         if (movementInput == Vector2.zero)
             return false;
+
         float moveSpeed = speed;
+        // Diagonal moves take longer to finish --> lower speed 
         if (movementInput.x != 0 && movementInput.y != 0)
-        {
             moveSpeed = speed * 0.7071f;
-        }
 
         int count = rb.Cast(
             movementInput,
@@ -119,22 +126,18 @@ public class GoblinController : MonoBehaviour
             rb.MovePosition(rb.position + movementInput * moveSpeed);
             return true;
         }
-        bool uCanMove = true;
+
         for (int i = 0; i < castCollisions.Count; i++)
         {
             if (!castCollisions[i].collider.CompareTag("Goblin") &&
-            !castCollisions[i].collider.CompareTag("Player") &&
-            !castCollisions[i].collider.CompareTag("PlayerHitbox"))
+                !castCollisions[i].collider.CompareTag("Player"))
             {
-                uCanMove = false;
+                return false;
             }
         }
-        if (uCanMove)
-        {
-            rb.MovePosition(rb.position + movementInput * moveSpeed);
-            return true;
-        }
-        return false;
+
+        rb.MovePosition(rb.position + movementInput * moveSpeed);
+        return true;
     }
 
     public void LockMove()
@@ -144,7 +147,6 @@ public class GoblinController : MonoBehaviour
     public void UnlockMove()
     {
         canMove = true;
-        // sword.StopAttack();
         DisableSwordCollider();
     }
 
@@ -162,6 +164,7 @@ public class GoblinController : MonoBehaviour
     {
         gettingKnockback = false;
     }
+
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -187,22 +190,15 @@ public class GoblinController : MonoBehaviour
     {
         movementInput = new Vector2(Random.Range(-1, 2) * 0.8f, Random.Range(-1, 2) * 0.8f);
         if (heroPosition.x > rb.position.x)
-        {
             movementInput.x = -0.8f;
-        }
         else if (heroPosition.x < rb.position.x)
-        {
             movementInput.x = 0.8f;
-        }
 
         if (heroPosition.y > rb.position.y)
-        {
             movementInput.y = -0.8f;
-        }
         else if (heroPosition.y < rb.position.y)
-        {
             movementInput.y = 0.8f;
-        }
+
         TryMove(movementInput);
     }
 

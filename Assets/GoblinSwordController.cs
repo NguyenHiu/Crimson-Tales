@@ -9,7 +9,7 @@ public class GoblinSwordController : MonoBehaviour
     public Collider2D swordCollider;
     Vector2 leftAttackOffset = new(-.06f, 0);
     Vector2 rightAttackOffset = Vector2.zero;
-    // Start is called before the first frame update
+    
     void Start()
     {
         swordCollider = GetComponent<Collider2D>();
@@ -24,7 +24,7 @@ public class GoblinSwordController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == "Player") {
+        if (other.CompareTag("Player")) {
             HeroController hero = other.GetComponentInParent<HeroController>();
             hero.TakeDamage(0);
         }
