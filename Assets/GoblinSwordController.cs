@@ -16,23 +16,17 @@ public class GoblinSwordController : MonoBehaviour
     }
 
     public void AttackRight() {
-        print("rightAttack");
         transform.localPosition = rightAttackOffset;
     }
 
     public void AttackLeft() {
-        print("leftAttack");
         transform.localPosition = leftAttackOffset;
     }
-
-    // public void StopAttack() {
-    //     swordCollider.enabled = false;
-    // }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Player") {
             HeroController hero = other.GetComponentInParent<HeroController>();
-            hero.TakeDamage(1);
+            hero.TakeDamage(0);
         }
     }
 }

@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class HeroController : MonoBehaviour
 {
     public int maxHealth, health;
     float speed = .1f;
-    float collisionOffset = .05f;
+    readonly float collisionOffset = .05f;
     public SwordController sword;
     public Rigidbody2D rb;
     public Animator animator;
     private SpriteRenderer spriteRender;
     public ContactFilter2D movementFilter;
-    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    private readonly List<RaycastHit2D> castCollisions = new();
     private bool canMove = true;
     private int idleSide;
-    private float x = 3f, y = 3f;
     Vector2 movementInput;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,29 +29,23 @@ public class HeroController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // print("Hero's position: " + rb.position);
         if (canMove)
         {
             movementInput = Vector2.zero;
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                print("attack");
                 SwordAttack();
-                // return;
             }
-            // else {
-            //     print(canMove);
-            // }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                print("right");
                 movementInput.x = 1;
                 animator.SetInteger("idleIndex", 2);
                 idleSide = 2;
             }
             else if (Input.GetKey(KeyCode.LeftArrow))
             {
-                print("left");
                 movementInput.x = -1;
                 animator.SetInteger("idleIndex", 1);
                 idleSide = 1;
@@ -58,14 +53,12 @@ public class HeroController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                print("down");
                 movementInput.y = -1;
                 animator.SetInteger("idleIndex", 0);
                 idleSide = 0;
             }
             else if (Input.GetKey(KeyCode.UpArrow))
             {
-                print("up");
                 movementInput.y = 1;
                 animator.SetInteger("idleIndex", 3);
                 idleSide = 3;
@@ -80,7 +73,7 @@ public class HeroController : MonoBehaviour
                 }
             }
             animator.SetBool("isRunning", success);
-        }
+        } 
     }
 
     private bool TryMove(Vector2 movementInput)
@@ -103,11 +96,18 @@ public class HeroController : MonoBehaviour
             rb.MovePosition(rb.position + movementInput * moveSpeed);
             return true;
         }
-        else
-        {
-            print("can not move");
-            return false;
+        int Count = count;
+        for (int i = 0; i < count; ++i) {
+            if (castCollisions[i].collider.tag == "Goblin") {
+                --Count;
+            }
         }
+        if (Count == 0) {
+            rb.MovePosition(rb.position + movementInput * moveSpeed);
+            return true;
+        }
+        // print("can not move");
+        return false;
     }
 
     public void EnableSwordCollider()
@@ -143,13 +143,13 @@ public class HeroController : MonoBehaviour
 
     public void LockMove()
     {
-        print("lock");
+        // print("lock");
         canMove = false;
     }
 
     public void UnlockMove()
     {
-        print("unlock");
+        // print("unlock");
         canMove = true;
         sword.StopAttack();
     }
@@ -163,13 +163,21 @@ public class HeroController : MonoBehaviour
         }
         else
         {
+            UnlockMove();
             animator.SetTrigger("isHurt");
-            x = 0;
         }
     }
 
     public void DestroyHero()
     {
         Destroy(gameObject);
+    }
+
+    public void SetHighLayerObject() {
+        spriteRender.sortingOrder = 1;
+    }
+
+    public void SetLowLayerObject() {
+        spriteRender.sortingOrder = 0;
     }
 }

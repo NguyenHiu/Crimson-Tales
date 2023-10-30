@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Goblin
+  - PlayerHitbox
   layers:
   - Default
   - TransparentFX
@@ -46,7 +47,7 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: hero
+  - name: object
     uniqueID: 3920290547
     locked: 0
   - name: UI

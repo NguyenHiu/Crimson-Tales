@@ -48,7 +48,7 @@ public class SwordController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == "Enemy") {
             GoblinController goblin = other.GetComponentInParent<GoblinController>();
-            goblin.TakeDamage(2);
+            goblin.TakeDamage(0);
         }
     }
 }
