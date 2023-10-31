@@ -13,8 +13,9 @@ public class DetectHero : MonoBehaviour
     {
         if (other.CompareTag("Player")) {
             // print("detect hero at: " + goblin.heroPosition);
-            goblin.heroPosition = other.GetComponent<HeroController>().rb.position;
-            if (goblin.transform.position.y > (goblin.heroPosition.y - 0.28f)) {
+            Transform playerTransform = other.GetComponent<HeroController>().transform;
+            goblin.SetAStarDestination(playerTransform);
+            if (goblin.transform.position.y > (playerTransform.position.y - 0.28f)) {
                 other.GetComponent<HeroController>().SetHighLayerObject();
                 goblin.SetLowLayerObject();
             } else {
@@ -26,8 +27,7 @@ public class DetectHero : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) {
-            goblin.heroPosition = Vector2.zero;
-        }
+        if (other.CompareTag("Player")) 
+            goblin.SetAStarDestination(null);
     }
 }

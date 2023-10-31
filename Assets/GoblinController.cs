@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
+using Pathfinding;
 
 public class GoblinController : MonoBehaviour
 {
@@ -14,20 +15,24 @@ public class GoblinController : MonoBehaviour
     SpriteRenderer spriteRender;
     Animator animator;
     TextMeshPro text;
-    
+
     public ContactFilter2D movementFilter;
     public GoblinSwordController sword;
     private readonly List<RaycastHit2D> castCollisions = new();
 
     private Vector2 movementInput = Vector2.zero;
-    readonly float speed = .05f;
     readonly float collisionOffset = .05f;
     readonly float flipSideOffset = .05f;
     bool gettingKnockback = false;
-    bool canMove = true;
     public int health = 10;
     public int maxHealth = 10;
-    public Vector2 heroPosition = Vector2.zero;
+    private bool canMove = true;
+
+    // AI enemy
+    AIPath aIPath;
+    AIDestinationSetter aStarDestination;
+
+    public GameObject target;
 
     void Start()
     {
@@ -35,19 +40,23 @@ public class GoblinController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
         text = GetComponentInChildren<TextMeshPro>();
+        aIPath = GetComponent<AIPath>();
+        aStarDestination = GetComponent<AIDestinationSetter>();
+        SetAStarDestination(null);
     }
 
     void FixedUpdate()
     {
         ShowHealth();
-        if (canMove == false)
+
+        if (!canMove)
             return;
 
         // flip X Coordinator of Goblin
         if ((spriteRender.flipX == false &&
-             rb.position.x - heroPosition.x > flipSideOffset) ||
+             rb.position.x - aStarDestination.target.transform.position.x > flipSideOffset) ||
             (spriteRender.flipX == true &&
-             heroPosition.x - rb.position.x > flipSideOffset))
+             aStarDestination.target.transform.position.x - rb.position.x > flipSideOffset))
         {
             spriteRender.flipX = !spriteRender.flipX;
         }
@@ -62,43 +71,27 @@ public class GoblinController : MonoBehaviour
 
         // if `Hurt` --> Get Knockback
         if (gettingKnockback == true)
-            GetKnockback(heroPosition);
+            GetKnockback(aStarDestination.target.transform.position);
 
         // if do not detect any Player in the zone --> Standing
-        else if (heroPosition == Vector2.zero)
+        else if (!aIPath.canMove)
+        {
             animator.SetBool("isWalking", false);
+        }
 
         // if Player in attack zone --> Attack
-        else if ((Math.Abs(heroPosition.x - rb.position.x) <= 1) &&
-                 (Math.Abs(heroPosition.y - rb.position.y) <= 0.5))
+        else if ((Math.Abs(aStarDestination.target.transform.position.x - rb.position.x) <= 1) &&
+                 (Math.Abs(aStarDestination.target.transform.position.y - rb.position.y) <= 0.5) &&
+                 aIPath.canMove)
         {
+            print("Start Attack");
             animator.SetTrigger("isAttack");
             SwordAttack();
         }
 
         // else: moving to Player
         else
-        {
-            movementInput = Vector2.zero;
-            if (heroPosition.x > rb.position.x)
-                movementInput.x = 1;
-            else if (heroPosition.x < rb.position.x)
-                movementInput.x = -1;
-
-            if (heroPosition.y > rb.position.y)
-                movementInput.y = 1;
-            else if (heroPosition.y < rb.position.y)
-                movementInput.y = -1;
-
-            bool success = TryMove(movementInput);
-            if (!success)
-            {
-                success = TryMove(new Vector2(movementInput.x, 0));
-                if (!success)
-                    success = TryMove(new Vector2(0, movementInput.y));
-            }
-            animator.SetBool("isWalking", success);
-        }
+            animator.SetBool("isWalking", true);
     }
 
     private void ShowHealth()
@@ -111,10 +104,10 @@ public class GoblinController : MonoBehaviour
         if (movementInput == Vector2.zero)
             return false;
 
-        float moveSpeed = speed;
+        float moveSpeed = 1.5f; //speed;
         // Diagonal moves take longer to finish --> lower speed 
         if (movementInput.x != 0 && movementInput.y != 0)
-            moveSpeed = speed * 0.7071f;
+            moveSpeed *= 0.7071f;
 
         int count = rb.Cast(
             movementInput,
@@ -123,7 +116,7 @@ public class GoblinController : MonoBehaviour
             moveSpeed + collisionOffset);
         if (count == 0)
         {
-            rb.MovePosition(rb.position + movementInput * moveSpeed);
+            rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * movementInput);
             return true;
         }
 
@@ -136,16 +129,19 @@ public class GoblinController : MonoBehaviour
             }
         }
 
-        rb.MovePosition(rb.position + movementInput * moveSpeed);
+        rb.MovePosition(rb.position + moveSpeed * Time.deltaTime * movementInput);
         return true;
     }
 
     public void LockMove()
     {
+        aIPath.canMove = false;
+        aIPath.canSearch = false;
         canMove = false;
     }
     public void UnlockMove()
     {
+        print("UnlockMove");
         canMove = true;
         DisableSwordCollider();
     }
@@ -171,7 +167,7 @@ public class GoblinController : MonoBehaviour
         if (health <= 0)
         {
             animator.SetTrigger("isDeath");
-            canMove = false;
+            LockMove();
         }
         else
         {
@@ -224,5 +220,25 @@ public class GoblinController : MonoBehaviour
     public void SetLowLayerObject()
     {
         spriteRender.sortingOrder = 0;
+
+    }
+
+    public void SetAStarDestination(Transform _transform)
+    {
+        if (_transform == null)
+        {
+            aStarDestination.target = target.transform;
+            aIPath.canMove = false;
+            aIPath.canSearch = false;
+        }
+        else
+        {
+            if (canMove)
+            {
+                aIPath.canMove = true;
+                aIPath.canSearch = true;
+            }
+            aStarDestination.target = _transform;
+        }
     }
 }
