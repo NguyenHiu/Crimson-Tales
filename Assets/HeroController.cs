@@ -154,7 +154,10 @@ public class HeroController : MonoBehaviour
     {
         health -= damage;
         if (health <= 0)
+        {
             animator.SetTrigger("isDeath");
+            LockMove();
+        }
         else
         {
             UnlockMove();
