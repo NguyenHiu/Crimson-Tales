@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class HeroController : MonoBehaviour
 {
     public int maxHealth, health;
-    readonly float speed = .1f;
+    readonly float speed = .08f;
     readonly float collisionOffset = .05f;
     public SwordController sword;
     public Rigidbody2D rb;

@@ -41,6 +41,7 @@ public class GoblinController : MonoBehaviour
         spriteRender = GetComponent<SpriteRenderer>();
         text = GetComponentInChildren<TextMeshPro>();
         aIPath = GetComponent<AIPath>();
+        aIPath.maxSpeed += Random.Range(1, 11) * .1f;
         aStarDestination = GetComponent<AIDestinationSetter>();
         SetAStarDestination(null);
     }
@@ -122,7 +123,7 @@ public class GoblinController : MonoBehaviour
 
         for (int i = 0; i < castCollisions.Count; i++)
         {
-            if (!castCollisions[i].collider.CompareTag("Goblin") &&
+            if (//!castCollisions[i].collider.CompareTag("Goblin") &&
                 !castCollisions[i].collider.CompareTag("Player"))
             {
                 return false;
@@ -184,6 +185,9 @@ public class GoblinController : MonoBehaviour
 
     private void GetKnockback(Vector2 heroPosition)
     {
+        aIPath.canMove = false;
+        aIPath.canSearch = false;
+
         movementInput = new Vector2(Random.Range(-1, 2) * 0.8f, Random.Range(-1, 2) * 0.8f);
         if (heroPosition.x > rb.position.x)
             movementInput.x = -0.8f;
@@ -233,7 +237,7 @@ public class GoblinController : MonoBehaviour
         }
         else
         {
-            if (canMove)
+            if (canMove && !gettingKnockback)
             {
                 aIPath.canMove = true;
                 aIPath.canSearch = true;
