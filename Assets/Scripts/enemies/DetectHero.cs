@@ -7,20 +7,19 @@ using Vector2 = UnityEngine.Vector2;
 public class DetectHero : MonoBehaviour
 {
     public Collider2D collider2d;
-    public GoblinController goblin;
+    public Enemy enemy;
     
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player")) {
-            // print("detect hero at: " + goblin.heroPosition);
             Transform playerTransform = other.GetComponent<HeroController>().transform;
-            goblin.SetAStarDestination(playerTransform);
-            if (goblin.transform.position.y > (playerTransform.position.y - 0.28f)) {
+            enemy.SetAStarDestination(playerTransform);
+            if (enemy.transform.position.y > (playerTransform.position.y - 0.28f)) {
                 other.GetComponent<HeroController>().SetHighLayerObject();
-                goblin.SetLowLayerObject();
+                enemy.SetLowLayerObject();
             } else {
                 other.GetComponent<HeroController>().SetLowLayerObject();
-                goblin.SetHighLayerObject();
+                enemy.SetHighLayerObject();
             }
         }
     }
@@ -28,6 +27,6 @@ public class DetectHero : MonoBehaviour
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player")) 
-            goblin.SetAStarDestination(null);
+            enemy.SetAStarDestination(null);
     }
 }

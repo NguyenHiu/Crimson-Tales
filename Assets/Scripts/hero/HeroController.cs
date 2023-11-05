@@ -188,7 +188,7 @@ public class HeroController : MonoBehaviour
         int Count = count;
         for (int i = 0; i < count; ++i)
         {
-            if (castCollisions[i].collider.CompareTag("Goblin"))
+            if (castCollisions[i].collider.CompareTag("Enemy"))
                 --Count;
         }
 

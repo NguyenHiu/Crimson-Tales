@@ -59,8 +59,8 @@ public class SwordController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            GoblinController goblin = other.GetComponentInParent<GoblinController>();
-            goblin.TakeDamage(damage);
+            Enemy enemy = other.GetComponentInParent<Enemy>();
+            enemy.TakeDamage(damage);
         }
     }
 }
