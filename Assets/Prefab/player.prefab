@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 3186895054923505994}
   m_Layer: 0
   m_Name: hitbox
-  m_TagString: PlayerHitbox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -260,7 +260,7 @@ Transform:
   - {fileID: 2516141299141304914}
   - {fileID: 8137995088072375388}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1273127248329184849
 SpriteRenderer:
@@ -302,7 +302,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -374676749
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1057848184, guid: e5c362b25c2213952b6eb87c4a7e85cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -376,6 +376,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   health: 10
+  speed: 0.08
+  normalSpeed: 0.08
+  collisionOffset: 0.05
   sword: {fileID: 2601067432490057761}
   rb: {fileID: 3799279546178022679}
   animator: {fileID: 0}
@@ -393,6 +396,13 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  toolbarCover: {fileID: 0}
+  InventoryGroup: {fileID: 0}
+  inventoryManager: {fileID: 0}
+  effects: []
+  timeHold: 0
+  healthEffectPrefab: {fileID: 6735093625954246381, guid: 90d5ee89db783662186b421e5fb2467d, type: 3}
+  speedEffectPrefab: {fileID: 3067290053147395199, guid: 2490c788ddfd2a8b08a2ad2a3c00bec2, type: 3}
 --- !u!61 &1861379737180213288
 BoxCollider2D:
   m_ObjectHideFlags: 0
