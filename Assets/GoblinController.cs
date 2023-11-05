@@ -53,7 +53,6 @@ public class GoblinController : MonoBehaviour
         if (!canMove)
             return;
 
-        // flip X Coordinator of Goblin
         if ((spriteRender.flipX == false &&
              rb.position.x - aStarDestination.target.transform.position.x > flipSideOffset) ||
             (spriteRender.flipX == true &&
@@ -62,37 +61,21 @@ public class GoblinController : MonoBehaviour
             spriteRender.flipX = !spriteRender.flipX;
         }
 
-        /*
-            Goblin has 4 states:
-                - `Stand`
-                - `Move`
-                - `Attack`
-                - `Hurt`
-        */
-
-        // if `Hurt` --> Get Knockback
         if (gettingKnockback == true)
             GetKnockback(aStarDestination.target.transform.position);
-
-        // if do not detect any Player in the zone --> Standing
-        else if (!aIPath.canMove)
-        {
-            animator.SetBool("isWalking", false);
-        }
-
-        // if Player in attack zone --> Attack
         else if ((Math.Abs(aStarDestination.target.transform.position.x - rb.position.x) <= 1) &&
-                 (Math.Abs(aStarDestination.target.transform.position.y - rb.position.y) <= 0.5) &&
-                 aIPath.canMove)
+                 (Math.Abs(aStarDestination.target.transform.position.y - rb.position.y) <= 0.5))
         {
             print("Start Attack");
             animator.SetTrigger("isAttack");
             SwordAttack();
         }
 
-        // else: moving to Player
-        else
+        if (aIPath.canMove)
             animator.SetBool("isWalking", true);
+        else 
+            animator.SetBool("isWalking", false);
+            
     }
 
     private void ShowHealth()
@@ -123,7 +106,7 @@ public class GoblinController : MonoBehaviour
 
         for (int i = 0; i < castCollisions.Count; i++)
         {
-            if (//!castCollisions[i].collider.CompareTag("Goblin") &&
+            if (!castCollisions[i].collider.CompareTag("Goblin") &&
                 !castCollisions[i].collider.CompareTag("Player"))
             {
                 return false;

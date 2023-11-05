@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class HeroController : MonoBehaviour
 {
@@ -18,6 +20,13 @@ public class HeroController : MonoBehaviour
     private int idleSide;
     Vector2 movementInput;
 
+    // inventory
+    private bool openInventory = false;
+    // public 
+    public Image toolbarCover;
+    public GameObject InventoryGroup;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -28,33 +37,54 @@ public class HeroController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (canMove == false)
+        if (Input.GetKeyDown(KeyCode.E) && openInventory == false)
+        {
+            toolbarCover.enabled = false;
+            InventoryGroup.SetActive(true);
+            openInventory = true;
+            animator.SetBool("isRunning", false);
             return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && openInventory == true)
+        {
+            toolbarCover.enabled = true;
+            InventoryGroup.SetActive(false);
+            openInventory = false;
+            return;
+        }
+
+        if (canMove == false || openInventory)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            SwordAttack();
+        }
 
         movementInput = Vector2.zero;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            SwordAttack();
-
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
             movementInput.x = 1;
             animator.SetInteger("idleIndex", 2);
             idleSide = 2;
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.A))
         {
             movementInput.x = -1;
             animator.SetInteger("idleIndex", 1);
             idleSide = 1;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
             movementInput.y = -1;
             animator.SetInteger("idleIndex", 0);
             idleSide = 0;
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.W))
         {
             movementInput.y = 1;
             animator.SetInteger("idleIndex", 3);
@@ -77,7 +107,6 @@ public class HeroController : MonoBehaviour
             return false;
 
         float moveSpeed = speed;
-        // Diagonal moves take longer to finish --> lower speed 
         if (movementInput.x != 0 && movementInput.y != 0)
             moveSpeed = speed * 0.7071f;
 
