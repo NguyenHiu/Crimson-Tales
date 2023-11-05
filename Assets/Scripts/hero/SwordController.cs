@@ -9,7 +9,11 @@ public class SwordController : MonoBehaviour
     private Vector2 upAttackOffset = new(-0.02f, 0.12f);
     private Vector2 rightAttackOffset = new(0.1f, 0.05f);
     private Vector2 leftAttackOffset = new(-0.1f, 0.05f);
+    private int damage;
 
+    public void SetDamage(int newDamage) {
+        damage = newDamage;
+    }
 
     void Start()
     {
@@ -56,7 +60,7 @@ public class SwordController : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             GoblinController goblin = other.GetComponentInParent<GoblinController>();
-            goblin.TakeDamage(2);
+            goblin.TakeDamage(damage);
         }
     }
 }

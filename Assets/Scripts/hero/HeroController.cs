@@ -8,8 +8,9 @@ using UnityEngine.UI;
 public class HeroController : MonoBehaviour
 {
     public int maxHealth, health;
-    readonly float speed = .08f;
-    readonly float collisionOffset = .05f;
+    public float speed = .08f;
+    public float normalSpeed = .08f;
+    public float collisionOffset = .05f;
     public SwordController sword;
     public Rigidbody2D rb;
     public Animator animator;
@@ -22,10 +23,18 @@ public class HeroController : MonoBehaviour
 
     // inventory
     private bool openInventory = false;
-    // public 
     public Image toolbarCover;
     public GameObject InventoryGroup;
+    public InventoryManager inventoryManager;
 
+    // effects
+    public List<Effect> effects = new();
+
+    // using potion
+    public float timeHold = 0f;
+    public readonly float timeToUsePotion = 1f;
+    public GameObject healthEffectPrefab;
+    public GameObject speedEffectPrefab;
 
     void Start()
     {
@@ -36,6 +45,13 @@ public class HeroController : MonoBehaviour
     }
 
     void FixedUpdate()
+    {
+        InventoryControl();
+        HandControl();
+        Move();
+    }
+
+    private void InventoryControl()
     {
         if (Input.GetKeyDown(KeyCode.E) && openInventory == false)
         {
@@ -53,17 +69,65 @@ public class HeroController : MonoBehaviour
             openInventory = false;
             return;
         }
+    }
 
-        if (canMove == false || openInventory)
-        {
+    private void HandControl()
+    {
+        if (openInventory == true)
             return;
-        }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        Item selectedItem = inventoryManager.GetSelectedItem(false);
+        if (selectedItem == null)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && selectedItem.itemType == ItemType.Sword)
         {
+            sword.SetDamage(selectedItem.GetDamage());
             SwordAttack();
         }
 
+        else if (selectedItem.itemType == ItemType.Potion && Input.GetKey(KeyCode.Mouse0))
+        {
+            if (timeHold == 0)
+                speed = normalSpeed / 2;
+
+            timeHold += Time.deltaTime;
+
+            if (timeHold >= timeToUsePotion)
+            {
+                timeHold = 0;
+                speed = normalSpeed;
+                Item potion = inventoryManager.GetSelectedItem(true);
+                if (potion.GetPotionType() == PotionType.Health)
+                {
+                    GameObject healEffectObject = Instantiate(healthEffectPrefab, transform);
+                    HealingEffect healEffect = healEffectObject.GetComponent<HealingEffect>();
+                    healEffect.SetUpEffect(1, gameObject.GetComponent<HeroController>());
+                    healEffect.SetHeal(3);
+                    healEffect.Affect();
+                }
+                else if (potion.GetPotionType() == PotionType.Speed)
+                {
+                    GameObject speedEffectObject = Instantiate(speedEffectPrefab, transform);
+                    SpeedEffect speedEffect = speedEffectObject.GetComponent<SpeedEffect>();
+                    speedEffect.SetUpEffect(20f, gameObject.GetComponent<HeroController>());
+                    speedEffect.SetSpeed(.02f);
+                    speedEffect.Affect();
+                }
+            }
+        }
+        else
+        {
+            speed = normalSpeed;
+            timeHold = 0;
+        }
+
+    }
+
+    private void Move()
+    {
+        if (canMove == false)
+            return;
         movementInput = Vector2.zero;
         if (Input.GetKey(KeyCode.D))
         {
@@ -171,12 +235,14 @@ public class HeroController : MonoBehaviour
     public void LockMove()
     {
         canMove = false;
+        print("lock move");
     }
 
     public void UnlockMove()
     {
         canMove = true;
         sword.StopAttack();
+        print("unlock move");
     }
 
     public void TakeDamage(int damage)
