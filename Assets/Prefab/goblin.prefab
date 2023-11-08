@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1798939420088995348}
   m_Layer: 6
   m_Name: goblin
-  m_TagString: Goblin
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ Transform:
   - {fileID: 9096539485910638480}
   - {fileID: 905937229470075359}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3922680089935786318
 SpriteRenderer:
@@ -469,12 +469,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0.5885586, w: 0.5691341}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 8058271424356871346}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 8058271424356871346}
+  m_maskType: 0
 --- !u!1 &5872380659955718377
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 61885567151835817}
   m_Layer: 6
   m_Name: hitbox
-  m_TagString: Enemy
+  m_TagString: EnemyHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

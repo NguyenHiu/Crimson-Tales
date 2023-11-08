@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,7 +32,7 @@ public class HeroController : MonoBehaviour
     public List<Effect> effects = new();
 
     // using potion
-    public float timeHold = 0f;
+    public float timeHold;
     public readonly float timeToUsePotion = 1f;
     public GameObject healthEffectPrefab;
     public GameObject speedEffectPrefab;
@@ -42,9 +43,10 @@ public class HeroController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
         canMove = true;
+        timeHold = 0f;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         InventoryControl();
         HandControl();
@@ -69,6 +71,7 @@ public class HeroController : MonoBehaviour
             openInventory = false;
             return;
         }
+
     }
 
     private void HandControl()
@@ -80,15 +83,16 @@ public class HeroController : MonoBehaviour
         if (selectedItem == null)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && selectedItem.itemType == ItemType.Sword)
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (selectedItem.itemType == ItemType.Sword))
         {
+            timeHold = 0;
             sword.SetDamage(selectedItem.GetDamage());
             SwordAttack();
         }
 
-        else if (selectedItem.itemType == ItemType.Potion && Input.GetKey(KeyCode.Mouse0))
+        else if ((selectedItem.itemType == ItemType.Potion) && Input.GetKey(KeyCode.Mouse0))
         {
-            if (timeHold == 0)
+            if (timeHold >= -.01f && timeHold <= .01f)
                 speed = normalSpeed / 2;
 
             timeHold += Time.deltaTime;
@@ -116,6 +120,7 @@ public class HeroController : MonoBehaviour
                 }
             }
         }
+
         else
         {
             speed = normalSpeed;

@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Goblin
   - PlayerHitbox
+  - EnemyHitbox
   layers:
   - Default
   - TransparentFX
