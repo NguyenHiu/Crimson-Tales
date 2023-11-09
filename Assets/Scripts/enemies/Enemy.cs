@@ -156,8 +156,6 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            if (Random.Range(0, 11) / 10f < dropItemRate)
-                DropItem();
             animator.SetTrigger("isDeath");
             LockMove();
         }
@@ -169,8 +167,10 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    private void DropItem()
+    public void DropItem()
     {
+        if (Random.Range(0, 11) / 10f > dropItemRate)
+            return;
         print("drop item");
         GameObject dropItemGO = Instantiate(dropItemPrefab);
         dropItemGO.transform.SetParent(transform.parent);
@@ -182,6 +182,7 @@ public abstract class Enemy : MonoBehaviour
 
     public void DestroyEnemy()
     {
+        DropItem();
         Destroy(gameObject);
     }
 

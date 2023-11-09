@@ -145,6 +145,9 @@ MonoBehaviour:
   baseSpeed: 2
   attackRangeX: 1
   attackRangeY: 0.5
+  dropItemRate: 1
+  itemDropped: {fileID: 11400000, guid: be4d7e4fcbbea05d9a7123844822d9e9, type: 2}
+  dropItemPrefab: {fileID: 6758648009671091524, guid: 11bec9dd844479c4fa82b262e53b47bc, type: 3}
   target: {fileID: 0}
   sword: {fileID: 4521290594151637946}
 --- !u!50 &3521226833994200142
@@ -648,7 +651,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
 --- !u!50 &7151384505268943055
 Rigidbody2D:
   serializedVersion: 4

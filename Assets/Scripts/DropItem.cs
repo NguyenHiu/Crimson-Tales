@@ -5,8 +5,21 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
-    Item item;
+    public Item item;
     SpriteRenderer spriteRenderer;
+    HeroController player = null;
+
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = item.sprite;
+    }
+
+    void Update()
+    {
+        if (player != null)
+            SendItem();
+    }
 
     public void Init()
     {
@@ -28,11 +41,21 @@ public class DropItem : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider2D)
     {
         if (collider2D.CompareTag("Player"))
+            player = collider2D.GetComponent<HeroController>();
+    }
+
+    void OnTriggerExit2D(Collider2D collider2D)
+    {
+        if (collider2D.CompareTag("Player"))
+            player = null;
+    }
+
+    void SendItem()
+    {
+        if (player.ReceiveItem(item))
         {
-            print("return item");
-            collider2D.GetComponent<HeroController>().ReceiveItem(item);
+            player = null;
             Destroy(gameObject);
-            return;
         }
     }
 }
