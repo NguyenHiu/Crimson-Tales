@@ -33,6 +33,11 @@ public abstract class Enemy : MonoBehaviour
     public float attackRangeX;
     public float attackRangeY;
 
+    // items drop
+    public float dropItemRate = .5f;
+    public Item itemDropped;
+    public GameObject dropItemPrefab;
+
 
     // AI enemy
     protected AIPath aIPath;
@@ -49,7 +54,7 @@ public abstract class Enemy : MonoBehaviour
         text = GetComponentInChildren<TextMeshPro>();
         aIPath = GetComponent<AIPath>();
         specificSpeed = baseSpeed + Random.Range(1, 11) * .1f;
-        aIPath.maxSpeed = specificSpeed; 
+        aIPath.maxSpeed = specificSpeed;
         aStarDestination = GetComponent<AIDestinationSetter>();
         SetAStarDestination(null);
     }
@@ -106,7 +111,7 @@ public abstract class Enemy : MonoBehaviour
         if (movementInput == Vector2.zero)
             return false;
 
-        float moveSpeed = baseSpeed; 
+        float moveSpeed = baseSpeed;
         if (movementInput.x != 0 && movementInput.y != 0)
             moveSpeed *= 0.7071f;
 
@@ -151,6 +156,8 @@ public abstract class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
+            if (Random.Range(0, 11) / 10f < dropItemRate)
+                DropItem();
             animator.SetTrigger("isDeath");
             LockMove();
         }
@@ -160,6 +167,17 @@ public abstract class Enemy : MonoBehaviour
             animator.SetBool("isWalking", false);
             gettingKnockback = true;
         }
+    }
+
+    private void DropItem()
+    {
+        print("drop item");
+        GameObject dropItemGO = Instantiate(dropItemPrefab);
+        dropItemGO.transform.SetParent(transform.parent);
+        dropItemGO.transform.position = transform.position;
+        DropItem dropItem = dropItemGO.GetComponent<DropItem>();
+        dropItem.SetItemDropped(itemDropped);
+        dropItem.Init();
     }
 
     public void DestroyEnemy()

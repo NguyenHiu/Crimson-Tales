@@ -343,4 +343,10 @@ public class HeroController : MonoBehaviour
     {
         spriteRender.sortingOrder = 0;
     }
+
+    public void ReceiveItem(Item item)
+    {
+        if (item)
+            inventoryManager.AddItem(item);
+    }
 }
