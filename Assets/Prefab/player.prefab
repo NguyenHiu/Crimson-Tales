@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2601067432490057761}
   m_Layer: 0
   m_Name: sword
-  m_TagString: Untagged
+  m_TagString: PlayerSword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 3186895054923505994}
   m_Layer: 0
   m_Name: hitbox
-  m_TagString: Untagged
+  m_TagString: PlayerHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -397,8 +397,12 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   toolbarCover: {fileID: 0}
-  InventoryGroup: {fileID: 0}
+  inventoryGroup: {fileID: 0}
+  playerInventory: {fileID: 0}
+  chestInventory: {fileID: 0}
   inventoryManager: {fileID: 0}
+  playerInventoryPos: {x: 0, y: 100}
+  playerInventoryInChestPos: {x: 400, y: 155}
   effects: []
   timeHold: 0
   healthEffectPrefab: {fileID: 6735093625954246381, guid: 90d5ee89db783662186b421e5fb2467d, type: 3}

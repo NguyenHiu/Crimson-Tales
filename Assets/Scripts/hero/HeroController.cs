@@ -24,9 +24,17 @@ public class HeroController : MonoBehaviour
 
     // inventory
     private bool openInventory = false;
+    private bool openChestInventory = false;
     public Image toolbarCover;
-    public GameObject InventoryGroup;
+    public GameObject inventoryGroup;
+    public GameObject playerInventory;
+    public GameObject chestInventory;
     public InventoryManager inventoryManager;
+    public Vector2 playerInventoryPos = new(0, 100);
+    public Vector2 playerInventoryInChestPos = new(400, 155);
+
+    // chest
+    public Transform openChest = null;
 
     // effects
     public List<Effect> effects = new();
@@ -36,6 +44,8 @@ public class HeroController : MonoBehaviour
     public readonly float timeToUsePotion = 1f;
     public GameObject healthEffectPrefab;
     public GameObject speedEffectPrefab;
+
+    public Item demoItem;
 
     void Start()
     {
@@ -55,28 +65,82 @@ public class HeroController : MonoBehaviour
 
     private void InventoryControl()
     {
-        if (Input.GetKeyDown(KeyCode.E) && openInventory == false)
+        if (Input.GetKeyDown(KeyCode.A) && openInventory == false)
         {
-            toolbarCover.enabled = false;
-            InventoryGroup.SetActive(true);
-            openInventory = true;
-            animator.SetBool("isRunning", false);
-            return;
+            if (openChestInventory == false)
+            {
+                bool canFindAChest = GetItemsInNearestChest();
+                if (canFindAChest)
+                {
+                    playerInventory.GetComponent<RectTransform>().localPosition = playerInventoryInChestPos;
+                    inventoryGroup.SetActive(true);
+                    chestInventory.SetActive(true);
+                    toolbarCover.enabled = false;
+                    openChestInventory = true;
+                    animator.SetBool("isRunning", false);
+                    LockMove();
+                }
+            }
+            else
+            {
+                ReturnItemsToTheChest();
+                toolbarCover.enabled = true;
+                inventoryGroup.SetActive(false);
+                openChestInventory = false;
+                UnlockMove();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && openInventory == true)
+        else if (Input.GetKeyDown(KeyCode.E) && openChestInventory == false)
         {
-            toolbarCover.enabled = true;
-            InventoryGroup.SetActive(false);
-            openInventory = false;
-            return;
+            if (openInventory == false)
+            {
+                playerInventory.GetComponent<RectTransform>().localPosition = playerInventoryPos;
+                inventoryGroup.SetActive(true);
+                chestInventory.SetActive(false);
+                toolbarCover.enabled = false;
+                openInventory = true;
+                animator.SetBool("isRunning", false);
+            }
+            else
+            {
+                toolbarCover.enabled = true;
+                inventoryGroup.SetActive(false);
+                openInventory = false;
+            }
         }
+    }
 
+    public bool GetItemsInNearestChest()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, .9f);
+        foreach (Collider2D obj in colliders)
+        {
+            if (obj.CompareTag("Chest"))
+            {
+                openChest = obj.GetComponent<Transform>();
+                Transform inventoryTransform = openChest.GetChild(0);
+                inventoryTransform.SetParent(chestInventory.transform);
+                inventoryTransform.localPosition = new(0, 0);
+                inventoryTransform.localScale = new(1, 1, 1);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void ReturnItemsToTheChest()
+    {
+        if (openChest != null)
+        {
+            chestInventory.transform.GetChild(1).SetParent(openChest);
+            openChest = null;
+        }
     }
 
     private void HandControl()
     {
-        if (openInventory == true)
+        if (openInventory == true || openChestInventory == true)
             return;
 
         Item selectedItem = inventoryManager.GetSelectedItem(false);
@@ -92,7 +156,7 @@ public class HeroController : MonoBehaviour
 
         else if ((selectedItem.itemType == ItemType.Potion) && Input.GetKey(KeyCode.Mouse0))
         {
-            if (timeHold >= -.01f && timeHold <= .01f)
+            if (timeHold == 0f)
                 speed = normalSpeed / 2;
 
             timeHold += Time.deltaTime;
@@ -121,7 +185,7 @@ public class HeroController : MonoBehaviour
             }
         }
 
-        else
+        else if (timeHold > 0)
         {
             speed = normalSpeed;
             timeHold = 0;
@@ -134,26 +198,26 @@ public class HeroController : MonoBehaviour
         if (canMove == false)
             return;
         movementInput = Vector2.zero;
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.C))
         {
             movementInput.x = 1;
             animator.SetInteger("idleIndex", 2);
             idleSide = 2;
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.Z))
         {
             movementInput.x = -1;
             animator.SetInteger("idleIndex", 1);
             idleSide = 1;
         }
 
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.X))
         {
             movementInput.y = -1;
             animator.SetInteger("idleIndex", 0);
             idleSide = 0;
         }
-        else if (Input.GetKey(KeyCode.W))
+        else if (Input.GetKey(KeyCode.S))
         {
             movementInput.y = 1;
             animator.SetInteger("idleIndex", 3);

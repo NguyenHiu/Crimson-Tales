@@ -55,12 +55,15 @@ public class InventoryManager : MonoBehaviour
         newInventoryItem.Init(item);
     }
 
-    public Item GetSelectedItem(bool use) {
+    public Item GetSelectedItem(bool use)
+    {
         InventorySlot slot = inventorySlots[selectedSlot];
         InventoryItem itemInslot = slot.GetComponentInChildren<InventoryItem>();
-        if (itemInslot != null) {
+        if (itemInslot != null)
+        {
             Item item = itemInslot.item;
-            if (use == true) {
+            if (use == true)
+            {
                 Destroy(itemInslot.gameObject);
             }
             return item;

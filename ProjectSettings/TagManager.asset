@@ -8,6 +8,8 @@ TagManager:
   - Goblin
   - PlayerHitbox
   - EnemyHitbox
+  - PlayerSword
+  - Chest
   layers:
   - Default
   - TransparentFX
