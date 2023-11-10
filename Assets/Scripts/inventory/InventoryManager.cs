@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -70,5 +71,19 @@ public class InventoryManager : MonoBehaviour
             return item;
         }
         return null;
+    }
+
+    public int NumberOfItem(Item y)
+    {
+        int cnt = 0;
+        for (int i = 0; i < inventorySlots.Length; ++i)
+        {
+            InventoryItem childItem = inventorySlots[i].GetComponentInChildren<InventoryItem>();
+            if (childItem && childItem.item == y)
+            {
+                ++cnt;
+            }
+        }
+        return cnt;
     }
 }

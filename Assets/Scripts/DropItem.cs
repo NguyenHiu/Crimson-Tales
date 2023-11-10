@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
-    public Item item;
+    Item item;
     SpriteRenderer spriteRenderer;
     HeroController player = null;
-
-    void Start()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = item.sprite;
-    }
 
     void Update()
     {

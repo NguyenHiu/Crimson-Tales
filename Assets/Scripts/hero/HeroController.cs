@@ -122,7 +122,7 @@ public class HeroController : MonoBehaviour
                 Transform inventoryTransform = openChest.GetChild(0);
                 inventoryTransform.SetParent(chestInventory.transform);
                 inventoryTransform.localPosition = new(0, 0);
-                inventoryTransform.localScale = new(1, 1, 1);
+                inventoryTransform.localScale = new(1, 1, 0);
                 return true;
             }
         }
