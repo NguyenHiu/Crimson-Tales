@@ -60,7 +60,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         ShowHealth();
         if (!canMove) return;
@@ -212,18 +212,6 @@ public abstract class Enemy : MonoBehaviour
             movementInput.y = 0.8f;
 
         TryMove(movementInput);
-    }
-
-
-    public void SetHighLayerObject()
-    {
-        spriteRender.sortingOrder = 1;
-    }
-
-    public void SetLowLayerObject()
-    {
-        spriteRender.sortingOrder = 0;
-
     }
 
     public void SetAStarDestination(Transform _transform)

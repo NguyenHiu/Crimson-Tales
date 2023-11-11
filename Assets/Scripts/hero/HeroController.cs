@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class HeroController : MonoBehaviour
     public ContactFilter2D movementFilter;
     private readonly List<RaycastHit2D> castCollisions = new();
     private bool canMove = true;
-    private int idleSide;
+    private Facing idleSide;
     Vector2 movementInput;
 
     // inventory
@@ -45,6 +46,9 @@ public class HeroController : MonoBehaviour
     public GameObject healthEffectPrefab;
     public GameObject speedEffectPrefab;
 
+    // dialog
+    public bool dialogOn = false;
+
     public Item demoItem;
 
     void Start()
@@ -58,9 +62,14 @@ public class HeroController : MonoBehaviour
 
     void Update()
     {
-        InventoryControl();
-        HandControl();
-        Move();
+        if (Input.GetKeyDown(KeyCode.F))
+            Interact();
+        if (!dialogOn)
+        {
+            InventoryControl();
+            HandControl();
+            Move();
+        }
     }
 
     private void InventoryControl()
@@ -202,26 +211,26 @@ public class HeroController : MonoBehaviour
         {
             movementInput.x = 1;
             animator.SetInteger("idleIndex", 2);
-            idleSide = 2;
+            idleSide = Facing.Right;
         }
         else if (Input.GetKey(KeyCode.Z))
         {
             movementInput.x = -1;
             animator.SetInteger("idleIndex", 1);
-            idleSide = 1;
+            idleSide = Facing.Left;
         }
 
         if (Input.GetKey(KeyCode.X))
         {
             movementInput.y = -1;
             animator.SetInteger("idleIndex", 0);
-            idleSide = 0;
+            idleSide = Facing.Down;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             movementInput.y = 1;
             animator.SetInteger("idleIndex", 3);
-            idleSide = 3;
+            idleSide = Facing.Up;
         }
 
         bool success = TryMove(movementInput);
@@ -284,21 +293,10 @@ public class HeroController : MonoBehaviour
     {
         LockMove();
         animator.SetTrigger("isAttack");
-        switch (idleSide)
-        {
-            case 0:
-                sword.AttackDown();
-                break;
-            case 1:
-                sword.AttackLeft();
-                break;
-            case 2:
-                sword.AttackRight();
-                break;
-            case 3:
-                sword.AttackUp();
-                break;
-        }
+        if (idleSide == Facing.Down) sword.AttackDown();
+        else if (idleSide == Facing.Left) sword.AttackLeft();
+        else if (idleSide == Facing.Right) sword.AttackRight();
+        else sword.AttackUp();
     }
 
     public void LockMove()
@@ -335,20 +333,40 @@ public class HeroController : MonoBehaviour
             Destroy(gameObject);
     }
 
-    public void SetHighLayerObject()
-    {
-        spriteRender.sortingOrder = 1;
-    }
-
-    public void SetLowLayerObject()
-    {
-        spriteRender.sortingOrder = 0;
-    }
-
     public bool ReceiveItem(Item item)
     {
         if (item)
             return inventoryManager.AddItem(item);
         return false;
     }
+
+    void Interact()
+    {
+        Vector2 direction = new(1, 0);
+        if (this.idleSide == Facing.Left) direction = new(-1, 0);
+        else if (this.idleSide == Facing.Down) direction = new(0, -1);
+        else if (this.idleSide == Facing.Up) direction = new(0, 1);
+
+        int count = rb.Cast(
+            direction,
+            movementFilter,
+            castCollisions,
+            .4f);
+        foreach (RaycastHit2D obj in castCollisions)
+        {
+            if (obj.transform.CompareTag("NPC"))
+            {
+                print("let's interact");
+                obj.transform.GetComponent<Interactable>().Interact();
+            }
+        }
+    }
+}
+
+enum Facing
+{
+    Down = 0,
+    Left = 1,
+    Right = 2,
+    Up = 3,
 }

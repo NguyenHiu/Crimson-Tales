@@ -15,16 +15,6 @@ public class DetectHero : MonoBehaviour
         {
             Transform playerTransform = other.GetComponent<HeroController>().transform;
             enemy.SetAStarDestination(playerTransform);
-            if (enemy.transform.position.y > (playerTransform.position.y - 0.28f))
-            {
-                other.GetComponent<HeroController>().SetHighLayerObject();
-                enemy.SetLowLayerObject();
-            }
-            else
-            {
-                other.GetComponent<HeroController>().SetLowLayerObject();
-                enemy.SetHighLayerObject();
-            }
         }
     }
 
