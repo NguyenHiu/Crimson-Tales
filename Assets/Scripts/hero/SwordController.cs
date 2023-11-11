@@ -11,7 +11,8 @@ public class SwordController : MonoBehaviour
     private Vector2 leftAttackOffset = new(-0.1f, 0.05f);
     private int damage;
 
-    public void SetDamage(int newDamage) {
+    public void SetDamage(int newDamage)
+    {
         damage = newDamage;
     }
 

@@ -14,11 +14,13 @@ public class BlueSmileController : Enemy
     private int damage = 5;
     public Collider2D attackZone;
 
-    public override void Attack() {}
-    public void FastAttack() {
-        aIPath.maxSpeed = specificSpeed*2;
+    public override void Attack() { }
+    public void FastAttack()
+    {
+        aIPath.maxSpeed = specificSpeed * 2;
     }
-    public void RestoreSpeed() {
+    public void RestoreSpeed()
+    {
         aIPath.maxSpeed = specificSpeed;
     }
 

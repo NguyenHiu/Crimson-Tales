@@ -8,16 +8,20 @@ public class DetectHero : MonoBehaviour
 {
     public Collider2D collider2d;
     public Enemy enemy;
-    
+
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) {
+        if (other.CompareTag("Player"))
+        {
             Transform playerTransform = other.GetComponent<HeroController>().transform;
             enemy.SetAStarDestination(playerTransform);
-            if (enemy.transform.position.y > (playerTransform.position.y - 0.28f)) {
+            if (enemy.transform.position.y > (playerTransform.position.y - 0.28f))
+            {
                 other.GetComponent<HeroController>().SetHighLayerObject();
                 enemy.SetLowLayerObject();
-            } else {
+            }
+            else
+            {
                 other.GetComponent<HeroController>().SetLowLayerObject();
                 enemy.SetHighLayerObject();
             }
@@ -26,7 +30,7 @@ public class DetectHero : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player")) 
+        if (other.CompareTag("Player"))
             enemy.SetAStarDestination(null);
     }
 }

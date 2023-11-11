@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 308723990390593302}
   m_Layer: 0
   m_Name: hitbox
-  m_TagString: Untagged
+  m_TagString: EnemyHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -352,12 +352,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0.7667247, w: 0.927491}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 5112952017495833370}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 5112952017495833370}
+  m_maskType: 0
 --- !u!1 &7538700359360084485
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,12 +486,12 @@ GameObject:
   - component: {fileID: 6253528353297878483}
   - component: {fileID: 8563692480041668920}
   m_Layer: 0
-  m_Name: blueSmile
+  m_Name: Blue Smile
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1503011065481075682
 Transform:
   m_ObjectHideFlags: 0
@@ -509,7 +509,7 @@ Transform:
   - {fileID: 9093770314709933017}
   - {fileID: 2666526231906457393}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2682905673894866502
 Animator:
@@ -613,6 +613,9 @@ MonoBehaviour:
   baseSpeed: 1
   attackRangeX: 2
   attackRangeY: 1
+  dropItemRate: 1
+  itemDropped: {fileID: 11400000, guid: 8e8b7ef15fd638a62b4cd28685edce6d, type: 2}
+  dropItemPrefab: {fileID: 6758648009671091524, guid: 11bec9dd844479c4fa82b262e53b47bc, type: 3}
   target: {fileID: 0}
   attackZone: {fileID: 6071419842282151031}
 --- !u!61 &6823112191858969506

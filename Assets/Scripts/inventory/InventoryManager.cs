@@ -66,7 +66,8 @@ public class InventoryManager : MonoBehaviour
             Item item = itemInslot.item;
             if (use == true)
             {
-                Destroy(itemInslot.gameObject);
+                if (itemInslot.gameObject)
+                    Destroy(itemInslot.gameObject);
             }
             return item;
         }

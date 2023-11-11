@@ -9,22 +9,26 @@ public class GoblinSwordController : MonoBehaviour
     public Collider2D swordCollider;
     Vector2 leftAttackOffset = new(-.06f, 0);
     Vector2 rightAttackOffset = Vector2.zero;
-    
+
     void Start()
     {
         swordCollider = GetComponent<Collider2D>();
     }
 
-    public void AttackRight() {
+    public void AttackRight()
+    {
         transform.localPosition = rightAttackOffset;
     }
 
-    public void AttackLeft() {
+    public void AttackLeft()
+    {
         transform.localPosition = leftAttackOffset;
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Player")) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
             HeroController hero = other.GetComponentInParent<HeroController>();
             hero.TakeDamage(4);
         }

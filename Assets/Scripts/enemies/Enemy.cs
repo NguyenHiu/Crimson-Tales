@@ -43,7 +43,7 @@ public abstract class Enemy : MonoBehaviour
     protected AIPath aIPath;
     protected AIDestinationSetter aStarDestination;
 
-    public GameObject target;
+    protected GameObject target;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +70,9 @@ public abstract class Enemy : MonoBehaviour
 
     private void Flip()
     {
+        if (aStarDestination.target == null)
+            return;
+
         if ((spriteRender.flipX == false &&
              rb.position.x - aStarDestination.target.transform.position.x > flipSideOffset) ||
             (spriteRender.flipX == true &&
@@ -81,8 +84,13 @@ public abstract class Enemy : MonoBehaviour
 
     private void Move()
     {
+        if (aStarDestination.target == null)
+            return;
+
         if (gettingKnockback == true)
             GetKnockback(aStarDestination.target.transform.position);
+        else if (aStarDestination.target.CompareTag("Enemy"))
+        { }
         else if ((Math.Abs(aStarDestination.target.transform.position.x - rb.position.x) <= attackRangeX) &&
                  (Math.Abs(aStarDestination.target.transform.position.y - rb.position.y) <= attackRangeY))
         {
@@ -183,7 +191,8 @@ public abstract class Enemy : MonoBehaviour
     public void DestroyEnemy()
     {
         DropItem();
-        Destroy(gameObject);
+        if (gameObject)
+            Destroy(gameObject);
     }
 
     private void GetKnockback(Vector2 heroPosition)
@@ -221,7 +230,7 @@ public abstract class Enemy : MonoBehaviour
     {
         if (_transform == null)
         {
-            aStarDestination.target = target.transform;
+            aStarDestination.target = transform; // target.transform;
             aIPath.canMove = false;
             aIPath.canSearch = false;
         }

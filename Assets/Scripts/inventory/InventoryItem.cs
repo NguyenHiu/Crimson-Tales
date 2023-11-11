@@ -11,7 +11,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image;
     private Transform parentTransform;
 
-    public void Init(Item newItem) {
+    public void Init(Item newItem)
+    {
         item = newItem;
         image.sprite = item.sprite;
     }
@@ -36,7 +37,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         image.raycastTarget = true;
     }
 
-    public void SetNewParentTransform(Transform newParent) {
+    public void SetNewParentTransform(Transform newParent)
+    {
         parentTransform = newParent;
     }
 }

@@ -331,7 +331,8 @@ public class HeroController : MonoBehaviour
 
     public void DestroyHero()
     {
-        Destroy(gameObject);
+        if (gameObject)
+            Destroy(gameObject);
     }
 
     public void SetHighLayerObject()

@@ -8,14 +8,18 @@ public abstract class Effect : MonoBehaviour
     float time;
     protected HeroController hero;
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         time += Time.deltaTime;
-        if (time >= timeLimit) {
+        if (time >= timeLimit)
+        {
             ClearEffect();
-            Destroy(gameObject);
+            if (gameObject)
+                Destroy(gameObject);
         }
     }
-    public void SetUpEffect(float _timeLimit, HeroController _hero) {
+    public void SetUpEffect(float _timeLimit, HeroController _hero)
+    {
         timeLimit = _timeLimit;
         hero = _hero;
         time = 0;
@@ -23,5 +27,5 @@ public abstract class Effect : MonoBehaviour
 
     public abstract void ClearEffect();
     public abstract void Affect();
-    
+
 }

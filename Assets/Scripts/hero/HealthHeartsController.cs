@@ -9,36 +9,42 @@ public class HealthHeartsController : MonoBehaviour
     public HeroController player;
     List<HeartController> hearts = new();
 
-    public void ClearAllHearts() {
+    public void ClearAllHearts()
+    {
         foreach (Transform t in transform)
         {
-            Destroy(t.gameObject);            
+            if (t.gameObject)
+                Destroy(t.gameObject);
         }
         hearts = new();
     }
-    
-    public void DrawHearts() {
+
+    public void DrawHearts()
+    {
         ClearAllHearts();
-        int noHeartsNeedToDraw = (int)Math.Ceiling(player.maxHealth/2.0);
+        int noHeartsNeedToDraw = (int)Math.Ceiling(player.maxHealth / 2.0);
 
         // create player's max health
-        for (int i = 0; i < noHeartsNeedToDraw; i++) {
+        for (int i = 0; i < noHeartsNeedToDraw; i++)
+        {
             CreateNewHearts();
         }
 
         // display player's current health
-        for (int i = 0; i < hearts.Count; i++) {
-            int t = player.health - 2*i;
-            if (t <= 0) 
+        for (int i = 0; i < hearts.Count; i++)
+        {
+            int t = player.health - 2 * i;
+            if (t <= 0)
                 hearts[i].SetHeartImage(HeartStatus.Empty);
             else if (t >= 2)
                 hearts[i].SetHeartImage(HeartStatus.Full);
-            else 
+            else
                 hearts[i].SetHeartImage(HeartStatus.Half);
         }
     }
 
-    public void CreateNewHearts() {
+    public void CreateNewHearts()
+    {
         GameObject newObject = Instantiate(heartPrefab);
         newObject.transform.SetParent(transform, false);
 

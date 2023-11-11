@@ -49,7 +49,8 @@ public class DropItem : MonoBehaviour
         if (player.ReceiveItem(item))
         {
             player = null;
-            Destroy(gameObject);
+            if (gameObject)
+                Destroy(gameObject);
         }
     }
 }

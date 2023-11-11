@@ -12,7 +12,7 @@ using Pathfinding;
 public class GoblinController : Enemy
 {
     public GoblinSwordController sword;
-    
+
     public override void Attack()
     {
         LockMove();

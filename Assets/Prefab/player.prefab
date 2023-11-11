@@ -260,7 +260,7 @@ Transform:
   - {fileID: 2516141299141304914}
   - {fileID: 8137995088072375388}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1273127248329184849
 SpriteRenderer:
@@ -403,10 +403,12 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   playerInventoryPos: {x: 0, y: 100}
   playerInventoryInChestPos: {x: 400, y: 155}
+  openChest: {fileID: 0}
   effects: []
   timeHold: 0
   healthEffectPrefab: {fileID: 6735093625954246381, guid: 90d5ee89db783662186b421e5fb2467d, type: 3}
   speedEffectPrefab: {fileID: 3067290053147395199, guid: 2490c788ddfd2a8b08a2ad2a3c00bec2, type: 3}
+  demoItem: {fileID: 11400000, guid: 8e8b7ef15fd638a62b4cd28685edce6d, type: 2}
 --- !u!61 &1861379737180213288
 BoxCollider2D:
   m_ObjectHideFlags: 0
