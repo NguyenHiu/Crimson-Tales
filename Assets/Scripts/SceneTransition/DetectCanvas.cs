@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class DetectCanvas : MonoBehaviour
 {
+    void Awake()
+    {
+        NPCController npccontroller = FindAnyObjectByType<NPCController>();
+        if (npccontroller)
+            npccontroller.Load();
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
         Scan();
@@ -16,7 +21,6 @@ public class DetectCanvas : MonoBehaviour
         Canvas canvas = FindAnyObjectByType<Canvas>();
         if (canvas)
         {
-            print("detect canvas");
             canvas.worldCamera = GetComponentInParent<Camera>();
         }
     }

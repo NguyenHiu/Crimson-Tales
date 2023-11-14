@@ -1,38 +1,63 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+
+[System.Serializable]
+public struct RequestInfo
+{
+    public string name;
+    public int demand;
+    public Item sampleItem;
+
+    public RequestInfo(RequestInfo other)
+    {
+        this.name = other.name;
+        this.demand = other.demand;
+        this.sampleItem = other.sampleItem;
+    }
+
+    public readonly bool IsValidRequestInfo()
+    {
+        return this.name != "";
+    }
+}
 
 public class RequestManager : MonoBehaviour
 {
-    public List<Request> requests;
-    public InventoryManager inventoryManager;
-    public Item healthItem;
-    public GameObject requestPrefab;
+    [SerializeField] RequestInfo requestInfo;
+    int total;
 
-    void Start()
+    public void InitRequest(RequestInfo _requestInfo)
     {
-        GameObject newRequestOB = Instantiate(requestPrefab, transform);
-        Request newRequest = newRequestOB.GetComponent<Request>();
-        newRequest.SetRequestInfo("Collect health potion", 5, healthItem);
-        requests.Add(newRequest);
+        total = 0;
+        requestInfo = _requestInfo;
     }
 
-    // Update is called once per frame
-    void Update()
+    public Item GetSampleItem()
     {
-        foreach (Request request in requests)
-        {
-            int playerHas = inventoryManager.NumberOfItem(request.item);
-            request.total = playerHas;
-            if (request.demand <= playerHas)
-            {
-                print("a request is done");
-            }
-        }
+        return requestInfo.sampleItem;
     }
 
-    // public void NewRequest(Item item, int demand)
-    // {
-    //     requests.Add(new Request(item, demand));
-    // }
+    public string Format()
+    {
+        return requestInfo.name + " " +
+               total + "/" + requestInfo.demand + ")";
+    }
+
+    public void UpdateRequestProcess(int newTotal)
+    {
+        total = newTotal;
+    }
+
+    public bool IsEqual(RequestInfo rInfo)
+    {
+        return rInfo.name == requestInfo.name;
+    }
+
+    public bool IsDone()
+    {
+        return total >= requestInfo.demand;
+    }
 }

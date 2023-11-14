@@ -246,13 +246,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219742412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.53, y: 0.24, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.342, y: 0.572, z: 0}
   m_LocalScale: {x: 1.86, y: 1.86, z: 1.86}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1336125355}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &219742416
 MonoBehaviour:
@@ -266,12 +266,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f861fa0839a08d44a7091ce5e2df72b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog:
-    lines:
+  NPCName: Old man
+  dialogs:
+  - lines:
     - Hello world
-    - I'm the first NPC in this game world
-    - Exciting ><, Right?
+    - Im the first NPC in this game world
+    - so exciting, right ><
+    - btw, I have a request for you, can you collect 1 health potion for me?
+    requestInfo:
+      name: collect 1 health potion
+      demand: 1
+      sampleItem: {fileID: 11400000, guid: 8e8b7ef15fd638a62b4cd28685edce6d, type: 2}
+    items: []
+  - lines:
+    - The award of this request is unbelievable
+    requestInfo:
+      name: 
+      demand: 0
+      sampleItem: {fileID: 0}
+    items: []
+  - lines:
+    - That's great, here's your award (nothing)
+    requestInfo:
+      name: 
+      demand: 0
+      sampleItem: {fileID: 0}
+    items: []
+  - lines:
+    - I thought you would not accept this stupid request, great!
+    requestInfo:
+      name: 
+      demand: 0
+      sampleItem: {fileID: 0}
+    items: []
+  - lines:
+    - It's okay, I (a poor man) will do it by myself
+    requestInfo:
+      name: 
+      demand: 0
+      sampleItem: {fileID: 0}
+    items: []
+  - lines:
+    - Hi, is everything okay?
+    requestInfo:
+      name: 
+      demand: 0
+      sampleItem: {fileID: 0}
+    items: []
   dialogManager: {fileID: 0}
+  containRequest: 1
 --- !u!1 &651292024
 GameObject:
   m_ObjectHideFlags: 0
@@ -3396,6 +3439,53 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &748712442
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748712444}
+  - component: {fileID: 748712443}
+  m_Layer: 0
+  m_Name: NPCController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &748712443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748712442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29bd777379dc5da42b671fdc4969eac3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nPCRequests:
+  - {fileID: 219742416}
+  path: /Data/scene2
+--- !u!4 &748712444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748712442}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.872, y: -0.33200002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &847190446
 GameObject:
   m_ObjectHideFlags: 0
@@ -5298,6 +5388,38 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77fa3f19c7fecca4b88c97656e44b6d5, type: 3}
+--- !u!1 &1336125354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1336125355}
+  m_Layer: 0
+  m_Name: NPCs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1336125355
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336125354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.872, y: -0.33200002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 219742415}
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658538276
 GameObject:
   m_ObjectHideFlags: 0

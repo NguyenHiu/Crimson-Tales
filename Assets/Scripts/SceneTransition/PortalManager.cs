@@ -12,6 +12,10 @@ public class PortalManager : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            NPCController npccontroller = FindAnyObjectByType<NPCController>();
+            if (npccontroller)
+                npccontroller.Save();
+
             SceneManager.LoadScene(toSceneIndex);
             FindAnyObjectByType<HeroController>().transform.position = toPosition;
         }

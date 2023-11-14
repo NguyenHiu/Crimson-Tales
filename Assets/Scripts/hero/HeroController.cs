@@ -62,10 +62,10 @@ public class HeroController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-            Interact();
         if (!dialogOn)
         {
+            if (Input.GetKeyDown(KeyCode.F))
+                Interact();
             InventoryControl();
             HandControl();
             Move();
@@ -357,7 +357,7 @@ public class HeroController : MonoBehaviour
             if (obj.transform.CompareTag("NPC"))
             {
                 print("let's interact");
-                obj.transform.GetComponent<Interactable>().Interact();
+                obj.transform.GetComponent<Interactable>().Interact(this);
             }
         }
     }
