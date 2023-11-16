@@ -9,47 +9,47 @@ using UnityEngine.UI;
 
 public class HeroController : MonoBehaviour
 {
-    public int maxHealth, health;
-    public float speed = .08f;
-    public float normalSpeed = .08f;
-    public float collisionOffset = .05f;
-    public SwordController sword;
-    public Rigidbody2D rb;
-    public Animator animator;
-    private SpriteRenderer spriteRender;
-    public ContactFilter2D movementFilter;
-    private readonly List<RaycastHit2D> castCollisions = new();
-    private bool canMove = true;
-    private Facing idleSide;
+    Rigidbody2D rb;
+    Animator animator;
+    SpriteRenderer spriteRender;
+
+    // health
+    [SerializeField] int maxHealth, health;
+
+    // move
+    [SerializeField] float maxSpeed = .2f;
+    [SerializeField] float normalSpeed = .08f;
+    [SerializeField] float collisionOffset = .05f;
+    [SerializeField] SwordController sword;
+    [SerializeField] ContactFilter2D movementFilter;
+    readonly List<RaycastHit2D> castCollisions = new();
     Vector2 movementInput;
+    bool canMove = true;
+    Dir idleDir;
+    float speed;
 
     // inventory
-    private bool openInventory = false;
-    private bool openChestInventory = false;
-    public Image toolbarCover;
-    public GameObject inventoryGroup;
-    public GameObject playerInventory;
-    public GameObject chestInventory;
-    public InventoryManager inventoryManager;
-    public Vector2 playerInventoryPos = new(0, 100);
-    public Vector2 playerInventoryInChestPos = new(400, 155);
+    bool openInventory = false;
+    bool openChestInventory = false;
+    [SerializeField] Image toolbarCover;
+    [SerializeField] GameObject inventoryGroup;
+    [SerializeField] GameObject playerInventory;
+    [SerializeField] GameObject chestInventory;
+    [SerializeField] InventoryManager inventoryManager;
+    Vector2 playerInventoryPos = new(0, 100);
+    Vector2 playerInventoryInChestPos = new(400, 155);
 
     // chest
-    public Transform openChest = null;
+    Transform openChest = null;
 
-    // effects
-    public List<Effect> effects = new();
-
-    // using potion
-    public float timeHold;
-    public readonly float timeToUsePotion = 1f;
-    public GameObject healthEffectPrefab;
-    public GameObject speedEffectPrefab;
+    // potion
+    float timeHold;
+    [SerializeField] float timeToUsePotion = 1f;
+    [SerializeField] GameObject healthEffectPrefab;
+    [SerializeField] GameObject speedEffectPrefab;
 
     // dialog
-    public bool dialogOn = false;
-
-    public Item demoItem;
+    bool dialogOn = false;
 
     void Start()
     {
@@ -58,14 +58,14 @@ public class HeroController : MonoBehaviour
         spriteRender = GetComponent<SpriteRenderer>();
         canMove = true;
         timeHold = 0f;
+        speed = normalSpeed;
     }
 
     void Update()
     {
         if (!dialogOn)
         {
-            if (Input.GetKeyDown(KeyCode.F))
-                Interact();
+            if (Input.GetKeyDown(KeyCode.F)) Interact();
             InventoryControl();
             HandControl();
             Move();
@@ -86,7 +86,7 @@ public class HeroController : MonoBehaviour
                     chestInventory.SetActive(true);
                     toolbarCover.enabled = false;
                     openChestInventory = true;
-                    animator.SetBool("isRunning", false);
+                    animator.SetBool("isRun", false);
                     LockMove();
                 }
             }
@@ -109,7 +109,7 @@ public class HeroController : MonoBehaviour
                 chestInventory.SetActive(false);
                 toolbarCover.enabled = false;
                 openInventory = true;
-                animator.SetBool("isRunning", false);
+                animator.SetBool("isRun", false);
             }
             else
             {
@@ -210,29 +210,30 @@ public class HeroController : MonoBehaviour
         if (Input.GetKey(KeyCode.C))
         {
             movementInput.x = 1;
-            animator.SetInteger("idleIndex", 2);
-            idleSide = Facing.Right;
+            animator.SetInteger("direction", 1);
+            idleDir = Dir.Side;
+            spriteRender.flipX = false;
         }
         else if (Input.GetKey(KeyCode.Z))
         {
             movementInput.x = -1;
-            animator.SetInteger("idleIndex", 1);
-            idleSide = Facing.Left;
+            animator.SetInteger("direction", 1);
+            idleDir = Dir.Side;
+            spriteRender.flipX = true;
         }
 
         if (Input.GetKey(KeyCode.X))
         {
             movementInput.y = -1;
-            animator.SetInteger("idleIndex", 0);
-            idleSide = Facing.Down;
+            animator.SetInteger("direction", 0);
+            idleDir = Dir.Down;
         }
         else if (Input.GetKey(KeyCode.S))
         {
             movementInput.y = 1;
-            animator.SetInteger("idleIndex", 3);
-            idleSide = Facing.Up;
+            animator.SetInteger("direction", 2);
+            idleDir = Dir.Up;
         }
-
         bool success = TryMove(movementInput);
         if (!success)
         {
@@ -240,7 +241,7 @@ public class HeroController : MonoBehaviour
             if (!success)
                 success = TryMove(new Vector2(0, movementInput.y));
         }
-        animator.SetBool("isRunning", success);
+        animator.SetBool("isRun", success);
     }
 
     private bool TryMove(Vector2 movementInput)
@@ -265,10 +266,8 @@ public class HeroController : MonoBehaviour
 
         int Count = count;
         for (int i = 0; i < count; ++i)
-        {
             if (castCollisions[i].collider.CompareTag("Enemy"))
                 --Count;
-        }
 
         if (Count == 0)
         {
@@ -292,11 +291,8 @@ public class HeroController : MonoBehaviour
     public void SwordAttack()
     {
         LockMove();
-        animator.SetTrigger("isAttack");
-        if (idleSide == Facing.Down) sword.AttackDown();
-        else if (idleSide == Facing.Left) sword.AttackLeft();
-        else if (idleSide == Facing.Right) sword.AttackRight();
-        else sword.AttackUp();
+        animator.SetTrigger("Attack");
+        sword.Attack(idleDir);
     }
 
     public void LockMove()
@@ -329,23 +325,21 @@ public class HeroController : MonoBehaviour
 
     public void DestroyHero()
     {
-        if (gameObject)
-            Destroy(gameObject);
+        if (gameObject) Destroy(gameObject);
     }
 
     public bool ReceiveItem(Item item)
     {
-        if (item)
-            return inventoryManager.AddItem(item);
+        if (item) return inventoryManager.AddItem(item);
         return false;
     }
 
     void Interact()
     {
         Vector2 direction = new(1, 0);
-        if (this.idleSide == Facing.Left) direction = new(-1, 0);
-        else if (this.idleSide == Facing.Down) direction = new(0, -1);
-        else if (this.idleSide == Facing.Up) direction = new(0, 1);
+        if (idleDir == Dir.Side) direction = new(-1, 0);
+        else if (idleDir == Dir.Down) direction = new(0, -1);
+        else if (idleDir == Dir.Up) direction = new(0, 1);
 
         int count = rb.Cast(
             direction,
@@ -361,12 +355,43 @@ public class HeroController : MonoBehaviour
             }
         }
     }
+
+    public void SetDialogOn()
+    {
+        dialogOn = true;
+    }
+
+    public void SetDialogOff()
+    {
+        dialogOn = false;
+    }
+
+    public void AddSpeed(float add)
+    {
+        speed += add;
+        if (speed > maxSpeed)
+            speed = maxSpeed;
+    }
+
+    public void SlowDown(float s)
+    {
+        if (speed > s) speed -= s;
+        else speed = 0;
+    }
+
+    public void Healing(int h)
+    {
+        health += h;
+        if (health > maxHealth) health = maxHealth;
+    }
+
+    public int Health { get { return health; } }
+    public int MaxHealth { get { return maxHealth; } }
 }
 
-enum Facing
+public enum Dir
 {
     Down = 0,
-    Left = 1,
-    Right = 2,
-    Up = 3,
+    Side = 1,
+    Up = 2,
 }

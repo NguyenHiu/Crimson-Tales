@@ -1,67 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SwordController : MonoBehaviour
 {
-    public Collider2D swordCollider;
-    private Vector2 downAttackOffset = new(0f, -0.05f);
-    private Vector2 upAttackOffset = new(-0.02f, 0.12f);
-    private Vector2 rightAttackOffset = new(0.1f, 0.05f);
-    private Vector2 leftAttackOffset = new(-0.1f, 0.05f);
-    private int damage;
+    [SerializeField] GameObject[] hitboxs;
+    Dir dir = Dir.Down;
 
     public void SetDamage(int newDamage)
     {
-        damage = newDamage;
+        foreach (GameObject s in hitboxs)
+            s.GetComponent<SwordHitboxController>().SetDamage(newDamage);
     }
 
-    void Start()
+    public void Attack(Dir index)
     {
-        swordCollider = GetComponent<Collider2D>();
-    }
-
-    public void AttackRight()
-    {
-        transform.localPosition = rightAttackOffset;
-    }
-
-    public void AttackLeft()
-    {
-        transform.localPosition = leftAttackOffset;
-    }
-
-    public void AttackUp()
-    {
-        transform.localPosition = upAttackOffset;
-    }
-
-    public void AttackDown()
-    {
-        transform.localPosition = downAttackOffset;
+        dir = index;
+        hitboxs[(int)dir].GetComponent<SwordHitboxController>().Attack();
     }
 
     public void EnableSwordCollider()
     {
-        swordCollider.enabled = true;
+        print("enable [" + dir + "]");
+        hitboxs[(int)dir].GetComponent<SwordHitboxController>().EnableCollider();
     }
 
     public void DisableSwordCollider()
     {
-        swordCollider.enabled = false;
+        print("disable [" + dir + "]");
+        hitboxs[(int)dir].GetComponent<SwordHitboxController>().DisableCollider();
     }
 
     public void StopAttack()
     {
-        swordCollider.enabled = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("EnemyHitbox"))
-        {
-            Enemy enemy = other.GetComponentInParent<Enemy>();
-            enemy.TakeDamage(damage);
-        }
+        DisableSwordCollider();
     }
 }

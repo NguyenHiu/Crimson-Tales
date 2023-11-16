@@ -26,7 +26,7 @@ public class DialogManager : MonoBehaviour
     public IEnumerator ShowDialog(string NPCName, Dialog dialog, DialogState currState, Action<DialogState> onUpdated, Dialog acceptedDialog = null, Dialog rejectedDialog = null)
     {
         yield return new WaitForEndOfFrame();
-        heroController.dialogOn = true;
+        heroController.SetDialogOn();
         dialogGroup.SetActive(true);
         onUpdatedState = onUpdated;
         this.dialog = dialog;
@@ -59,7 +59,7 @@ public class DialogManager : MonoBehaviour
         if (dialogState == DialogState.Complete)
             onUpdatedState(DialogState.None);
         dialogGroup.SetActive(false);
-        heroController.dialogOn = false;
+        heroController.SetDialogOff();
         currentLine = 0;
     }
 
