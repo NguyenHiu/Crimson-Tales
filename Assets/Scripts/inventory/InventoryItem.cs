@@ -7,13 +7,26 @@ using UnityEngine.PlayerLoop;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Item item;
-    public Image image;
-    private Transform parentTransform;
+    [SerializeField] Item item;
+    Image image;
+    Transform parentTransform;
+
+    void Awake()
+    {
+        GetImageComponent();
+    }
+
+    void GetImageComponent()
+    {
+        image = GetComponent<Image>();
+    }
+
+    public Item Item { get { return item; } }
 
     public void Init(Item newItem)
     {
         item = newItem;
+        if (!image) GetImageComponent();
         image.sprite = item.sprite;
     }
 

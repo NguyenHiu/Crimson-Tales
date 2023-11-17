@@ -51,6 +51,15 @@ public class HeroController : MonoBehaviour
     // dialog
     bool dialogOn = false;
 
+    // hurt animation
+    float hurtingTime = 1f;
+    float hurtingCooldown = 0f;
+    float alpha = 1f;
+
+    // death aniamtion
+    bool death = false;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -68,8 +77,13 @@ public class HeroController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F)) Interact();
             InventoryControl();
             HandControl();
-            Move();
         }
+    }
+
+    void FixedUpdate()
+    {
+        ActingHurt();
+        Move();
     }
 
     private void InventoryControl()
@@ -127,11 +141,13 @@ public class HeroController : MonoBehaviour
         {
             if (obj.CompareTag("Chest"))
             {
+                obj.GetComponent<ChestManager>().OpenChestSpriteUpdate();
                 openChest = obj.GetComponent<Transform>();
                 Transform inventoryTransform = openChest.GetChild(0);
                 inventoryTransform.SetParent(chestInventory.transform);
-                inventoryTransform.localPosition = new(0, 0);
-                inventoryTransform.localScale = new(1, 1, 0);
+                inventoryTransform.GetComponent<RectTransform>().sizeDelta = new(196, 137);
+                inventoryTransform.localPosition = new(-28, -68);
+                inventoryTransform.localScale = new(4, 4, 0);
                 return true;
             }
         }
@@ -142,6 +158,7 @@ public class HeroController : MonoBehaviour
     {
         if (openChest != null)
         {
+            openChest.GetComponent<ChestManager>().CloseChestSpriteUpdate();
             chestInventory.transform.GetChild(1).SetParent(openChest);
             openChest = null;
         }
@@ -310,17 +327,55 @@ public class HeroController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (death) return;
         health -= damage;
         if (health <= 0)
         {
-            animator.SetTrigger("isDeath");
+            // animator.SetTrigger("isDeath");
             LockMove();
+            hurtingCooldown = hurtingTime;
+            alpha = 0;
+            death = true;
         }
         else
         {
             UnlockMove();
-            animator.SetTrigger("isHurt");
+            // animator.SetTrigger("isHurt");
+            hurtingCooldown = hurtingTime;
+            alpha = 0;
         }
+    }
+
+    void ActingHurt()
+    {
+        if (hurtingCooldown <= 0f)
+        {
+            if (death)
+            {
+                DestroyHero();
+                return;
+            }
+            hurtingCooldown = 0f;
+            alpha = 1f;
+            spriteRender.color = new Vector4(
+                spriteRender.color.r,
+                spriteRender.color.g,
+                spriteRender.color.b,
+                alpha
+            );
+            return;
+        }
+        alpha = alpha * 2 + Time.deltaTime;
+        if (alpha >= 1f) alpha -= 1f;
+
+        spriteRender.color = new Vector4(
+            spriteRender.color.r,
+            spriteRender.color.b,
+            spriteRender.color.g,
+            alpha
+        );
+
+        hurtingCooldown -= Time.deltaTime;
     }
 
     public void DestroyHero()
@@ -337,7 +392,7 @@ public class HeroController : MonoBehaviour
     void Interact()
     {
         Vector2 direction = new(1, 0);
-        if (idleDir == Dir.Side) direction = new(-1, 0);
+        if (idleDir == Dir.Side) direction = new(spriteRender.flipX ? -1 : 1, 0);
         else if (idleDir == Dir.Down) direction = new(0, -1);
         else if (idleDir == Dir.Up) direction = new(0, 1);
 

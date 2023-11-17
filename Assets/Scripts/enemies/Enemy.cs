@@ -229,7 +229,8 @@ public abstract class Enemy : MonoBehaviour
                 aIPath.canMove = true;
                 aIPath.canSearch = true;
             }
-            aStarDestination.target = _transform;
+            Transform rielHero = _transform;
+            aStarDestination.target = rielHero;
         }
     }
 

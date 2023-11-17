@@ -182,6 +182,8 @@ MonoBehaviour:
   - {fileID: 490187933082319638}
   - {fileID: 5204177307807432299}
   inventoryItemPrefab: {fileID: 4329011509652173203, guid: 0460849889bee36aca989fa4b53c3988, type: 3}
+  closedChestSprite: {fileID: -648176182, guid: d79e720b099b0b040bec9bfdf8b63e00, type: 3}
+  openChestSprite: {fileID: -1811876379, guid: d79e720b099b0b040bec9bfdf8b63e00, type: 3}
 --- !u!1001 &7210165199663946039
 PrefabInstance:
   m_ObjectHideFlags: 0

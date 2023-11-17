@@ -4,14 +4,29 @@ using UnityEngine;
 
 public class ChestManager : MonoBehaviour
 {
-    public List<Item> items;
-    public InventorySlot[] inventorySlots;
-    public GameObject inventoryItemPrefab;
+    [SerializeField] List<Item> items;
+    [SerializeField] InventorySlot[] inventorySlots;
+    [SerializeField] GameObject inventoryItemPrefab;
+    [SerializeField] Sprite closedChestSprite;
+    [SerializeField] Sprite openChestSprite;
+    SpriteRenderer spriteRenderer;
+
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         foreach (Item item in items)
             AddItem(item);
+    }
+
+    public void OpenChestSpriteUpdate()
+    {
+        spriteRenderer.sprite = openChestSprite;
+    }
+
+    public void CloseChestSpriteUpdate()
+    {
+        spriteRenderer.sprite = closedChestSprite;
     }
 
     void AddItem(Item item)

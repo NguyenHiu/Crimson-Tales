@@ -51,9 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5446a2af35580394f98a9c5e6b5bc6f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogGroup: {fileID: 0}
+  dialogGroup: {fileID: 0}
+  buttonGroup: {fileID: 0}
+  requestController: {fileID: 0}
+  inventoryManager: {fileID: 0}
+  heroController: {fileID: 0}
   textBox: {fileID: 0}
-  wordSpeed: 0
+  wordSpeed: 40
 --- !u!222 &2722677447258639976
 CanvasRenderer:
   m_ObjectHideFlags: 0

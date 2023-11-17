@@ -126,12 +126,12 @@ TextureImporter:
       name: Back Dash_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 85.333336
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 27
+        y: 22
+        width: 10
+        height: 21
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +147,12 @@ TextureImporter:
       name: Back Dash_1
       rect:
         serializedVersion: 2
-        x: 85
-        y: 0
-        width: 85.333336
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 90
+        y: 22
+        width: 12
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: Back Dash_2
       rect:
         serializedVersion: 2
-        x: 170
-        y: 0
-        width: 85.333336
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 154
+        y: 22
+        width: 12
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,6 +181,27 @@ TextureImporter:
       bones: []
       spriteID: 85e893ae7656ffe4fa4cbdb6c499d315
       internalID: 1525787584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Back Dash_3
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 22
+        width: 10
+        height: 20
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fe50c59d8657c94b8042f8830a4dc6b
+      internalID: -2026064324
       vertices: []
       indices: 
       edges: []
@@ -199,6 +220,7 @@ TextureImporter:
       Back Dash_0: -118614547
       Back Dash_1: 129351451
       Back Dash_2: 1525787584
+      Back Dash_3: -2026064324
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

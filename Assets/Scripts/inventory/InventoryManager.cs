@@ -63,7 +63,7 @@ public class InventoryManager : MonoBehaviour
         InventoryItem itemInslot = slot.GetComponentInChildren<InventoryItem>();
         if (itemInslot != null)
         {
-            Item item = itemInslot.item;
+            Item item = itemInslot.Item;
             if (use == true)
             {
                 if (itemInslot.gameObject)
@@ -80,7 +80,7 @@ public class InventoryManager : MonoBehaviour
         for (int i = 0; i < inventorySlots.Length; ++i)
         {
             InventoryItem childItem = inventorySlots[i].GetComponentInChildren<InventoryItem>();
-            if (childItem && childItem.item == y)
+            if (childItem && childItem.Item == y)
             {
                 ++cnt;
             }
