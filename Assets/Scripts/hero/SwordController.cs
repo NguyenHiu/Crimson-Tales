@@ -6,10 +6,14 @@ using UnityEngine;
 public class SwordController : MonoBehaviour
 {
     [SerializeField] GameObject[] hitboxs;
+    string swordName;
     Dir dir = Dir.Down;
 
-    public void SetDamage(int newDamage)
+    public string SwordName { get { return swordName; } }
+
+    public void SetSwordProperties(int newDamage, string sName)
     {
+        swordName = sName;
         foreach (GameObject s in hitboxs)
             s.GetComponent<SwordHitboxController>().SetDamage(newDamage);
     }

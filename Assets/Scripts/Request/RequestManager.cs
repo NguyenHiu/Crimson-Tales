@@ -42,7 +42,7 @@ public class RequestManager : MonoBehaviour
 
     public string Format()
     {
-        return requestInfo.name + " " +
+        return requestInfo.name + " (" +
                total + "/" + requestInfo.demand + ")";
     }
 

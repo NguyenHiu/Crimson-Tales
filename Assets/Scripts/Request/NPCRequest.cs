@@ -1,22 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPCRequest : MonoBehaviour, Interactable
 {
     [SerializeField] string NPCName;
     [SerializeField] List<Dialog> dialogs;
-    [SerializeField] DialogManager dialogManager;
     [SerializeField] bool containRequest;
+    [SerializeField] Transform requestSign;
+    [SerializeField] Item rewardItem;
+    InventoryManager inventoryManager;
+    DialogManager dialogManager;
     DialogState dialogState = DialogState.Waiting;
 
     void Start()
     {
         if (!dialogManager)
             dialogManager = FindAnyObjectByType<DialogManager>();
+        if (!inventoryManager)
+            inventoryManager = FindAnyObjectByType<InventoryManager>();
     }
 
-    public void Interact(HeroController hero)
+    void Update()
+    {
+        UpdateRequestSign();
+    }
+
+    public void Interact()
     {
         if (dialogState == DialogState.Processing &&
             dialogManager.TheRequestIsDone(
@@ -24,6 +35,7 @@ public class NPCRequest : MonoBehaviour, Interactable
             ))
         {
             dialogState = DialogState.Complete;
+            GiveReward();
         }
 
         Dialog accept = null, reject = null;
@@ -36,8 +48,22 @@ public class NPCRequest : MonoBehaviour, Interactable
         StartCoroutine(dialogManager.ShowDialog(
                             NPCName, dialogs[(int)dialogState],
                             dialogState,
-                            (newState) => { dialogState = newState; },
+                            (newState) =>
+                            {
+                                dialogState = newState;
+                            },
                             accept, reject));
+    }
+
+    void GiveReward()
+    {
+        inventoryManager.AddItem(rewardItem);
+    }
+
+    void UpdateRequestSign()
+    {
+        if (dialogState != DialogState.Waiting)
+            transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void GoToNextState()

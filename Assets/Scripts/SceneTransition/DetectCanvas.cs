@@ -7,8 +7,9 @@ public class DetectCanvas : MonoBehaviour
     void Awake()
     {
         NPCController npccontroller = FindAnyObjectByType<NPCController>();
-        if (npccontroller)
-            npccontroller.Load();
+        if (npccontroller) npccontroller.Load();
+        StateController stateController = FindAnyObjectByType<StateController>();
+        if (stateController) stateController.Load();
     }
 
     void Start()
@@ -18,10 +19,11 @@ public class DetectCanvas : MonoBehaviour
 
     void Scan()
     {
-        Canvas canvas = FindAnyObjectByType<Canvas>();
-        if (canvas)
-        {
-            canvas.worldCamera = GetComponentInParent<Camera>();
-        }
+        Canvas[] canvas = FindObjectsOfType<Canvas>();
+        foreach (Canvas c in canvas)
+            if (c.name == "MainCanvas")
+            {
+                c.worldCamera = GetComponentInParent<Camera>();
+            }
     }
 }

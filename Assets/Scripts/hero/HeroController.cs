@@ -19,6 +19,7 @@ public class HeroController : MonoBehaviour
     // move
     [SerializeField] float maxSpeed = .2f;
     [SerializeField] float normalSpeed = .08f;
+    [SerializeField] float speed;
     [SerializeField] float collisionOffset = .05f;
     [SerializeField] SwordController sword;
     [SerializeField] ContactFilter2D movementFilter;
@@ -26,7 +27,7 @@ public class HeroController : MonoBehaviour
     Vector2 movementInput;
     bool canMove = true;
     Dir idleDir;
-    float speed;
+
 
     // inventory
     bool openInventory = false;
@@ -173,14 +174,14 @@ public class HeroController : MonoBehaviour
         if (selectedItem == null)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && (selectedItem.itemType == ItemType.Sword))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (selectedItem.GetItemType == ItemType.Sword))
         {
             timeHold = 0;
-            sword.SetDamage(selectedItem.GetDamage());
+            sword.SetSwordProperties(selectedItem.Damage, selectedItem.ItemName);
             SwordAttack();
         }
 
-        else if ((selectedItem.itemType == ItemType.Potion) && Input.GetKey(KeyCode.Mouse0))
+        else if ((selectedItem.GetItemType == ItemType.Potion) && Input.GetKey(KeyCode.Mouse0))
         {
             if (timeHold == 0f)
                 speed = normalSpeed / 2;
@@ -192,7 +193,7 @@ public class HeroController : MonoBehaviour
                 timeHold = 0;
                 speed = normalSpeed;
                 Item potion = inventoryManager.GetSelectedItem(true);
-                if (potion.GetPotionType() == PotionType.Health)
+                if (potion.GetPotionType == PotionType.Health)
                 {
                     GameObject healEffectObject = Instantiate(healthEffectPrefab, transform);
                     HealingEffect healEffect = healEffectObject.GetComponent<HealingEffect>();
@@ -200,7 +201,7 @@ public class HeroController : MonoBehaviour
                     healEffect.SetHeal(3);
                     healEffect.Affect();
                 }
-                else if (potion.GetPotionType() == PotionType.Speed)
+                else if (potion.GetPotionType == PotionType.Speed)
                 {
                     GameObject speedEffectObject = Instantiate(speedEffectPrefab, transform);
                     SpeedEffect speedEffect = speedEffectObject.GetComponent<SpeedEffect>();
@@ -308,7 +309,7 @@ public class HeroController : MonoBehaviour
     public void SwordAttack()
     {
         LockMove();
-        animator.SetTrigger("Attack");
+        animator.SetBool("Attack", true);
         sword.Attack(idleDir);
     }
 
@@ -322,6 +323,7 @@ public class HeroController : MonoBehaviour
     {
         canMove = true;
         sword.StopAttack();
+        animator.SetBool("Attack", false);
         print("unlock move");
     }
 
@@ -403,10 +405,11 @@ public class HeroController : MonoBehaviour
             .4f);
         foreach (RaycastHit2D obj in castCollisions)
         {
-            if (obj.transform.CompareTag("NPC"))
+            if (obj.transform.CompareTag("NPC") ||
+                obj.transform.CompareTag("InformedObject"))
             {
                 print("let's interact");
-                obj.transform.GetComponent<Interactable>().Interact(this);
+                obj.transform.GetComponent<Interactable>().Interact();
             }
         }
     }

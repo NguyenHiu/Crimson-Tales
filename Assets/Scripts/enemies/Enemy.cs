@@ -184,6 +184,7 @@ public abstract class Enemy : MonoBehaviour
         dropItemGO.transform.SetParent(transform.parent);
         dropItemGO.transform.position = transform.position;
         DropItem dropItem = dropItemGO.GetComponent<DropItem>();
+        dropItem.GetComponent<Transform>().Rotate(0, 0, 30);
         dropItem.SetItemDropped(itemDropped);
         dropItem.Init();
     }

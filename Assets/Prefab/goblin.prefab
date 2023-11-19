@@ -17,13 +17,13 @@ GameObject:
   - component: {fileID: 6362102386163059827}
   - component: {fileID: 6035668560597480856}
   - component: {fileID: 1798939420088995348}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8380123062605966542
 Transform:
   m_ObjectHideFlags: 0
@@ -41,7 +41,7 @@ Transform:
   - {fileID: 9096539485910638480}
   - {fileID: 905937229470075359}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3922680089935786318
 SpriteRenderer:
@@ -145,8 +145,8 @@ MonoBehaviour:
   baseSpeed: 2
   attackRangeX: 1
   attackRangeY: 0.5
-  dropItemRate: 1
-  itemDropped: {fileID: 11400000, guid: be4d7e4fcbbea05d9a7123844822d9e9, type: 2}
+  dropItemRate: 0.5
+  itemDropped: {fileID: 11400000, guid: 247535a08eb8def478fa0670b67e43f5, type: 2}
   dropItemPrefab: {fileID: 6758648009671091524, guid: 11bec9dd844479c4fa82b262e53b47bc, type: 3}
   sword: {fileID: 4521290594151637946}
 --- !u!50 &3521226833994200142
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 8074406486018225639}
   - component: {fileID: 8058271424356871346}
   - component: {fileID: 801627603158354640}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 7544871550084607352}
   - component: {fileID: 3706277644915488754}
   - component: {fileID: 61885567151835817}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: hitbox
   m_TagString: EnemyHitbox
   m_Icon: {fileID: 0}
@@ -594,7 +594,7 @@ GameObject:
   - component: {fileID: 7256354647728163170}
   - component: {fileID: 7151384505268943055}
   - component: {fileID: 5298950632739194524}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -650,7 +650,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.5
 --- !u!50 &7151384505268943055
 Rigidbody2D:
   serializedVersion: 4
@@ -704,7 +704,7 @@ GameObject:
   - component: {fileID: 1419389464047875234}
   - component: {fileID: 8475024517761855526}
   - component: {fileID: 4521290594151637946}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}

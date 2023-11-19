@@ -11,6 +11,7 @@ TagManager:
   - PlayerSword
   - Chest
   - NPC
+  - InformedObject
   layers:
   - Default
   - TransparentFX

@@ -10,7 +10,6 @@ public class DialogManager : MonoBehaviour
     [SerializeField] GameObject dialogGroup;
     [SerializeField] GameObject buttonGroup;
     [SerializeField] RequestController requestController;
-    [SerializeField] InventoryManager inventoryManager;
     [SerializeField] HeroController heroController;
     [SerializeField] Text textBox;
     [SerializeField] int wordSpeed;

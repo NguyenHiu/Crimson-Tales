@@ -22,6 +22,8 @@ public class RequestController : MonoBehaviour
 
     void Update()
     {
+        if (requestManagers.Count != 0) requestGroupCanvas.SetActive(true);
+        else requestGroupCanvas.SetActive(false);
         UpdateRequestsProcess();
     }
 
