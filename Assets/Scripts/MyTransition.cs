@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class MyTransition : MonoBehaviour
 {
-    Animator animator;
-
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
+    [SerializeField] Animator animator;
 
     public void ActiveEndTransition()
     {
         animator.SetTrigger("End");
+    }
+
+    public void ActiveStartTransition()
+    {
+        animator.SetTrigger("Start");
     }
 }

@@ -19,11 +19,8 @@ public class DetectCanvas : MonoBehaviour
 
     void Scan()
     {
-        Canvas[] canvas = FindObjectsOfType<Canvas>();
-        foreach (Canvas c in canvas)
-            if (c.name == "MainCanvas")
-            {
-                c.worldCamera = GetComponentInParent<Camera>();
-            }
+        Canvas canvas = FindAnyObjectByType<Canvas>();
+        if (canvas != null) canvas.worldCamera = GetComponentInParent<Camera>();
+
     }
 }

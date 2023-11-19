@@ -60,12 +60,16 @@ public class HeroController : MonoBehaviour
     // death aniamtion
     bool death = false;
 
+    // sound
+    AudioManager audioManager;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
+        audioManager = FindAnyObjectByType<AudioManager>();
         canMove = true;
         timeHold = 0f;
         speed = normalSpeed;
@@ -96,6 +100,7 @@ public class HeroController : MonoBehaviour
                 bool canFindAChest = GetItemsInNearestChest();
                 if (canFindAChest)
                 {
+                    audioManager.OpenChest();
                     playerInventory.GetComponent<RectTransform>().localPosition = playerInventoryInChestPos;
                     inventoryGroup.SetActive(true);
                     chestInventory.SetActive(true);
@@ -124,6 +129,7 @@ public class HeroController : MonoBehaviour
                 chestInventory.SetActive(false);
                 toolbarCover.enabled = false;
                 openInventory = true;
+                audioManager.OpenInventory();
                 animator.SetBool("isRun", false);
             }
             else
@@ -144,7 +150,7 @@ public class HeroController : MonoBehaviour
             {
                 obj.GetComponent<ChestManager>().OpenChestSpriteUpdate();
                 openChest = obj.GetComponent<Transform>();
-                Transform inventoryTransform = openChest.GetChild(0);
+                Transform inventoryTransform = openChest.Find("ChestInventory");
                 inventoryTransform.SetParent(chestInventory.transform);
                 inventoryTransform.GetComponent<RectTransform>().sizeDelta = new(196, 137);
                 inventoryTransform.localPosition = new(-28, -68);
@@ -184,13 +190,17 @@ public class HeroController : MonoBehaviour
         else if ((selectedItem.GetItemType == ItemType.Potion) && Input.GetKey(KeyCode.Mouse0))
         {
             if (timeHold == 0f)
+            {
                 speed = normalSpeed / 2;
+                audioManager.DrinkPotion();
+            }
 
             timeHold += Time.deltaTime;
 
             if (timeHold >= timeToUsePotion)
             {
                 timeHold = 0;
+                audioManager.StopDrinkPotion();
                 speed = normalSpeed;
                 Item potion = inventoryManager.GetSelectedItem(true);
                 if (potion.GetPotionType == PotionType.Health)
@@ -214,6 +224,7 @@ public class HeroController : MonoBehaviour
 
         else if (timeHold > 0)
         {
+            audioManager.StopDrinkPotion();
             speed = normalSpeed;
             timeHold = 0;
         }
@@ -309,6 +320,8 @@ public class HeroController : MonoBehaviour
     public void SwordAttack()
     {
         LockMove();
+        if (animator.GetBool("Attack") == false)
+            audioManager.SwordSound();
         animator.SetBool("Attack", true);
         sword.Attack(idleDir);
     }
@@ -335,6 +348,8 @@ public class HeroController : MonoBehaviour
         {
             // animator.SetTrigger("isDeath");
             LockMove();
+            audioManager.Death();
+            audioManager.StopMusicBackground();
             hurtingCooldown = hurtingTime;
             alpha = 0;
             death = true;
@@ -342,6 +357,7 @@ public class HeroController : MonoBehaviour
         else
         {
             UnlockMove();
+            audioManager.HeroDamageAudio();
             // animator.SetTrigger("isHurt");
             hurtingCooldown = hurtingTime;
             alpha = 0;

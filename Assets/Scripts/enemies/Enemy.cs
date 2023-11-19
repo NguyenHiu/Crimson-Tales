@@ -38,6 +38,9 @@ public abstract class Enemy : MonoBehaviour
     public Item itemDropped;
     public GameObject dropItemPrefab;
 
+    // audio
+    protected AudioManager audioManager;
+
 
     // AI enemy
     protected AIPath aIPath;
@@ -52,6 +55,7 @@ public abstract class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
         text = GetComponentInChildren<TextMeshPro>();
+        audioManager = FindAnyObjectByType<AudioManager>();
         aIPath = GetComponent<AIPath>();
         specificSpeed = baseSpeed + Random.Range(1, 11) * .1f;
         aIPath.maxSpeed = specificSpeed;
@@ -162,6 +166,7 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        audioManager.GoblinDamageAudio();
         if (health <= 0)
         {
             animator.SetTrigger("isDeath");

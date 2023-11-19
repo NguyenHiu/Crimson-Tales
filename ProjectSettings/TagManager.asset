@@ -12,6 +12,7 @@ TagManager:
   - Chest
   - NPC
   - InformedObject
+  - Audio
   layers:
   - Default
   - TransparentFX

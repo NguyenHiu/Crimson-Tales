@@ -1,0 +1,2252 @@
+fileFormatVersion: 2
+guid: 06128a5f185aa024fa3efb8190a0c4e5
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Male4_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 535
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2dd662f0d58e1b4cab0b5d84c908506
+      internalID: -266817263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_1
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 535
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32639db628ecb98409f8e4acfb828d49
+      internalID: -327221534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_2
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 535
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3591d45682a2de04194d476c7c3cc131
+      internalID: 1469788125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 535
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 994478cd46448734ca52d66b85cadbdf
+      internalID: -964957867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_4
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 535
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 584b3f5c0abe2144683541a574c99bda
+      internalID: -139922520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_5
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 535
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edfbba920ea340b49bd18f7ca1145529
+      internalID: 1625331057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_6
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 535
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cba602f19e8dab54c824fc1faced2ed8
+      internalID: -1683706365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_7
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 535
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dc217cd35a5d9643bbddea472ba5ec6
+      internalID: 1495198428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_8
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 487
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 977827574d3da3b4faad84dc689346bc
+      internalID: 1884814828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_9
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 487
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33e882532a7f76b4c9e2e9ffbc4701d0
+      internalID: 1088083202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_10
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 487
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0af83f77e7169f84baac42fad1b9fb97
+      internalID: -1516575468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_11
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 487
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ac13309fc4e27c49b35636ce78411b7
+      internalID: 168116189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_12
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 487
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8f464b9d3a098742b3b1ae0ed0a4ed8
+      internalID: 594798726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_13
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 487
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0747db01bd8932c4ebb62942e209b89d
+      internalID: 1010805427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_14
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 487
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d36ed37454a4c3243839d590e94242a3
+      internalID: -14377987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_15
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 487
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f40ab3905239294697449b00a2e5da1
+      internalID: -1256825760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_16
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 439
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d51182dab4c7a44b80ea7bd1e57cdc4
+      internalID: -939556491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_17
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 439
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed0d2546195cb1f41878dca82aaf8363
+      internalID: -906838720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_18
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 439
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c348666287fbcde478ccd6f3fae643cb
+      internalID: -708053976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_19
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 439
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c060641bb0882e4986199354836e710
+      internalID: 832052069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_20
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 439
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf6ca5e544cac2a42b342e695603ad39
+      internalID: 366137591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_21
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 439
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb34f02c5e29cb14fb201fead2e9c695
+      internalID: 144752213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_22
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 439
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c8bf0f7990aea54795782f39ea7e1e8
+      internalID: -2084935542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_23
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 439
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c2fe19d1c4fe874093c6bb564418129
+      internalID: 203716566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_24
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 391
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a692bd6c261834a8da47e6ae903c6d
+      internalID: 405591935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_25
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 391
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24b6da103ef400c42a53908d0f050388
+      internalID: -1730396181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_26
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 391
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 226e17a66ca60de4ba849527ce020f85
+      internalID: -1872632105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_27
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 391
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 66cb05bebaba9c747bcd3bdd6d2dc02f
+      internalID: 1903856296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_28
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 391
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2075335b36b372644a1d3e668f381d89
+      internalID: -791856779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_29
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 391
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b95590c84adc3244885a069e4c9de9a
+      internalID: -1930963446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_30
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 391
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9618202a6e873574581ce508366b1f1e
+      internalID: -2035149047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_31
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 391
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dbe3dc7de59122488412257ed8c5f02
+      internalID: 840057411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_32
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 343
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 124ba952aa4dd2345ae70fcf62e13507
+      internalID: -368621120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_33
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 343
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f44952c3c2968d64794a49bcb4782cc0
+      internalID: -816511185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_34
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 343
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 096cac6dcd7f6094688c83e48d363bc0
+      internalID: -1492412918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_35
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 343
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9a5d95b02b2b5a4da97f2507c508760
+      internalID: -725447814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_36
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 343
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf3012202bf594e49ab5304698a664a2
+      internalID: 1995142538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_37
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 343
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d9a783008798e949b92786d0041661d
+      internalID: 945048533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_38
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 343
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61dbfab9bd1f3f74493db6e40f047008
+      internalID: -664469407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_39
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 343
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d44af5404b9054a46adf95314619d5ed
+      internalID: 1651542135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_40
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 295
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7733b40564b1b794d93c36f69fb3d4f9
+      internalID: 1490597405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_41
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 295
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a534ae01614e40448f310159ec1a210
+      internalID: 1968393745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_42
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 295
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1bdf6505f266df48b2c45c9cb76d10d
+      internalID: -562054625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_43
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 295
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72a5a68ba346d88479b24848933577d4
+      internalID: 229967787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_44
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 295
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5355d1a42874bda41a11e416670956c7
+      internalID: 2142157768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_45
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 295
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea01a49d70443d4aa447e153469d221
+      internalID: -1223344090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_46
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 295
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fc5b39fa9fbc144bb9be7d75f6e8d54
+      internalID: -136051112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_47
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 295
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2962d2dfe330fe34eb9fc7e9bab4daec
+      internalID: -636778471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_48
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 247
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a9c3f7340b543d4c876c2c27741ffe2
+      internalID: -1855678681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_49
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 247
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d36bf25133f7b74db8e4bd07a42614d
+      internalID: 1077574212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_50
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 247
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1b2f8aee396150459afb733ea1bd62f
+      internalID: 1468512280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_51
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 247
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29aa67a86afefb6479b969ea6ab0c71b
+      internalID: -1692917399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_52
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 247
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47c4d6862307fc043bb27a9f608fddbe
+      internalID: -1185201649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_53
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 247
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1dbfc7c0d6438144ab325a0a3f2c36b
+      internalID: -1158400120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_54
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 247
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4e583d4cf95310498c4e98f0f7e75e4
+      internalID: -1157760109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_55
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 247
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 572ea8a20f016154c8603ade2d920da8
+      internalID: 73959647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_56
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 199
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7732c340f447ef4ea52b6b05bc4bbd2
+      internalID: -1122820228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_57
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 199
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 760973e2129a77144b399c9358376204
+      internalID: 229651115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_58
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 199
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2131107c89e526240ae1c06ef0d3c733
+      internalID: 848147309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_59
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 199
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 207400f24e148dd49b740be81d3171be
+      internalID: 368959874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_60
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 199
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3224b5f4eeb3ff4681cb429cb98bfd5
+      internalID: -1393614609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_61
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 199
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 292af167b0f365f49ab4b368409f23e1
+      internalID: -488950544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_62
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 199
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaf679ab6f6e4914e8b660a93a3fbec7
+      internalID: 1836325345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_63
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 199
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0475da8478bf8e2448682a62a3f4e82c
+      internalID: -1696663511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_64
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 151
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3b7550949e37344da28a403b89225a7
+      internalID: 835071825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_65
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 151
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9dc7cd9b3f2e2a249b0eef3c480a68f9
+      internalID: -1343579489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_66
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 151
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88aa2f02172b6994f8baadebb08f9fe3
+      internalID: 103788873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_67
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 151
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d050e48ecbcffdb45b3eefbc141b2a5b
+      internalID: 1518936085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_68
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 151
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8805ea194491fd446aa8233e9926b1c5
+      internalID: 104656331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_69
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 151
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea14fc01ac8d8d846904dc70a4ad4401
+      internalID: 1517002488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_70
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 151
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc855dd6e260ce845a9d446e80722aec
+      internalID: -191228885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_71
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 151
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b9d88a28a199f3429fe99da4c78a33d
+      internalID: -584800436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_72
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 103
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6371f5eb3b647214da6780825c7fb271
+      internalID: -1390876303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_73
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 103
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26104ac2240e1e24cacf326be180ee27
+      internalID: -2018899078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_74
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 103
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a225fee3230a4b48ad6423ef1445bb5
+      internalID: -780528621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_75
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 103
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8156e0e2df7f9145a8211384d9fa5dd
+      internalID: 1062946104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_76
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 103
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b3e073c517960548a4af6876882706e
+      internalID: 833803582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_77
+      rect:
+        serializedVersion: 2
+        x: 169
+        y: 103
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3dbe5a5b3dc5d5c4193239a45a9f6d46
+      internalID: -1064165788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_78
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 103
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 862685d4fa0eb68428953b07ecaeb371
+      internalID: 489062443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_79
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 103
+        width: 13
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aa9ba435175a2948a8072485b6ee20e
+      internalID: 238400286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_80
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 55
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd127be85c2aaf94bb28651a76416dea
+      internalID: 1367527154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_81
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 55
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af2e30eac3972954da6ac99ca6929121
+      internalID: -1440446667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_82
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 55
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc5f1e87f1cc9fd4da967bd10a8b8b61
+      internalID: -272499731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_83
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 55
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce8382a1d25543341bd3b5190445debf
+      internalID: -336802820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_84
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 55
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eac4feb93651c848b53f977a984ab1d
+      internalID: -594637203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_85
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 55
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3720c32a77dfb8546a631070b709dc57
+      internalID: -998256331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_86
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 55
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d885b20d7727ce4ab5f186756f1d063
+      internalID: -1748555400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_87
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 55
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e962cfd4058ac14694bb3de767632d5
+      internalID: 932735593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_88
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 7
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26049200a4b6bcb429ed709f84a8fc01
+      internalID: 1455258546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_89
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 7
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94f38750b0bbf5343a3d00d02e736f76
+      internalID: -34907741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_90
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 7
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d7ac0aaceaa1f44d8ebb64f56758c55
+      internalID: 564491541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_91
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 7
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3bc213219006fd489bbfaf32e1578b7
+      internalID: 889263704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_92
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 7
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c66e9b80916f2864ab07eacd4a5d3396
+      internalID: 2107602299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_93
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 7
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b89228a90fd6d2644b7694e034d998ab
+      internalID: -1656639144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_94
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 7
+        width: 15
+        height: 34
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af5226a59cf2a4146b0e78aa239b8810
+      internalID: 18853831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Male4_95
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 7
+        width: 15
+        height: 35
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4872d042196019041864c208fc6bd18a
+      internalID: 1108159919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Male4_0: -266817263
+      Male4_1: -327221534
+      Male4_10: -1516575468
+      Male4_11: 168116189
+      Male4_12: 594798726
+      Male4_13: 1010805427
+      Male4_14: -14377987
+      Male4_15: -1256825760
+      Male4_16: -939556491
+      Male4_17: -906838720
+      Male4_18: -708053976
+      Male4_19: 832052069
+      Male4_2: 1469788125
+      Male4_20: 366137591
+      Male4_21: 144752213
+      Male4_22: -2084935542
+      Male4_23: 203716566
+      Male4_24: 405591935
+      Male4_25: -1730396181
+      Male4_26: -1872632105
+      Male4_27: 1903856296
+      Male4_28: -791856779
+      Male4_29: -1930963446
+      Male4_3: -964957867
+      Male4_30: -2035149047
+      Male4_31: 840057411
+      Male4_32: -368621120
+      Male4_33: -816511185
+      Male4_34: -1492412918
+      Male4_35: -725447814
+      Male4_36: 1995142538
+      Male4_37: 945048533
+      Male4_38: -664469407
+      Male4_39: 1651542135
+      Male4_4: -139922520
+      Male4_40: 1490597405
+      Male4_41: 1968393745
+      Male4_42: -562054625
+      Male4_43: 229967787
+      Male4_44: 2142157768
+      Male4_45: -1223344090
+      Male4_46: -136051112
+      Male4_47: -636778471
+      Male4_48: -1855678681
+      Male4_49: 1077574212
+      Male4_5: 1625331057
+      Male4_50: 1468512280
+      Male4_51: -1692917399
+      Male4_52: -1185201649
+      Male4_53: -1158400120
+      Male4_54: -1157760109
+      Male4_55: 73959647
+      Male4_56: -1122820228
+      Male4_57: 229651115
+      Male4_58: 848147309
+      Male4_59: 368959874
+      Male4_6: -1683706365
+      Male4_60: -1393614609
+      Male4_61: -488950544
+      Male4_62: 1836325345
+      Male4_63: -1696663511
+      Male4_64: 835071825
+      Male4_65: -1343579489
+      Male4_66: 103788873
+      Male4_67: 1518936085
+      Male4_68: 104656331
+      Male4_69: 1517002488
+      Male4_7: 1495198428
+      Male4_70: -191228885
+      Male4_71: -584800436
+      Male4_72: -1390876303
+      Male4_73: -2018899078
+      Male4_74: -780528621
+      Male4_75: 1062946104
+      Male4_76: 833803582
+      Male4_77: -1064165788
+      Male4_78: 489062443
+      Male4_79: 238400286
+      Male4_8: 1884814828
+      Male4_80: 1367527154
+      Male4_81: -1440446667
+      Male4_82: -272499731
+      Male4_83: -336802820
+      Male4_84: -594637203
+      Male4_85: -998256331
+      Male4_86: -1748555400
+      Male4_87: 932735593
+      Male4_88: 1455258546
+      Male4_89: -34907741
+      Male4_9: 1088083202
+      Male4_90: 564491541
+      Male4_91: 889263704
+      Male4_92: 2107602299
+      Male4_93: -1656639144
+      Male4_94: 18853831
+      Male4_95: 1108159919
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

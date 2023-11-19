@@ -13,9 +13,11 @@ public class NPCRequest : MonoBehaviour, Interactable
     InventoryManager inventoryManager;
     DialogManager dialogManager;
     DialogState dialogState = DialogState.Waiting;
+    AudioManager audioManager;
 
     void Start()
     {
+        audioManager = FindAnyObjectByType<AudioManager>();
         if (!dialogManager)
             dialogManager = FindAnyObjectByType<DialogManager>();
         if (!inventoryManager)
@@ -29,13 +31,25 @@ public class NPCRequest : MonoBehaviour, Interactable
 
     public void Interact()
     {
+        audioManager.NPCTalk();
         if (dialogState == DialogState.Processing &&
             dialogManager.TheRequestIsDone(
-                dialogs[(int)DialogState.Waiting].Request
+                dialogs[(int)DialogState.Waiting].Request, false
             ))
         {
+            if (!GiveReward())
+            {
+                StartCoroutine(dialogManager.ShowDialog(
+                    "???", dialogs[(int)DialogState.CannotGiveReward],
+                    dialogState,
+                    (x) => { }
+                ));
+                return;
+            }
             dialogState = DialogState.Complete;
-            GiveReward();
+            dialogManager.TheRequestIsDone(
+                dialogs[(int)DialogState.Waiting].Request, true
+            );
         }
 
         Dialog accept = null, reject = null;
@@ -55,9 +69,9 @@ public class NPCRequest : MonoBehaviour, Interactable
                             accept, reject));
     }
 
-    void GiveReward()
+    bool GiveReward()
     {
-        inventoryManager.AddItem(rewardItem);
+        return inventoryManager.AddItem(rewardItem);
     }
 
     void UpdateRequestSign()
@@ -95,4 +109,5 @@ public enum DialogState
     PlayerAccept = 3,
     PlayerReject = 4,
     None = 5,
+    CannotGiveReward = 6,
 }

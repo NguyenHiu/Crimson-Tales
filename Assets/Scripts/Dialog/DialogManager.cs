@@ -37,9 +37,9 @@ public class DialogManager : MonoBehaviour
     }
 
     // 
-    public bool TheRequestIsDone(RequestInfo requestInfo)
+    public bool TheRequestIsDone(RequestInfo requestInfo, bool removeIfDone)
     {
-        return requestController.IsRequestDone(requestInfo, true);
+        return requestController.IsRequestDone(requestInfo, removeIfDone);
     }
 
     void Update()

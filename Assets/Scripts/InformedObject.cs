@@ -16,6 +16,7 @@ public class InformedObject : MonoBehaviour, Interactable
 
     public void Interact()
     {
+        print("Interacting...");
         StartCoroutine(dialogManager.ShowDialog(
             aName, dialog, DialogState.Waiting,
             (newState) => { })

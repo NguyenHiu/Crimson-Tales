@@ -5,6 +5,12 @@ using UnityEngine;
 public class BreakController : MonoBehaviour
 {
     [SerializeField] GameObject boom;
+    AudioManager audioManager;
+
+    void Start()
+    {
+        audioManager = FindAnyObjectByType<AudioManager>();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,7 +19,10 @@ public class BreakController : MonoBehaviour
             SwordController sword = other.GetComponentInParent<SwordController>();
             print("sword.name: " + sword.SwordName);
             if (sword.SwordName == "Vo_Phong_Kiem")
+            {
                 boom.SetActive(true);
+                audioManager.Explosion();
+            }
         }
     }
 }
