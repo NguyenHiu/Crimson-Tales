@@ -18,6 +18,14 @@ public class InventoryManager : MonoBehaviour
         inventorySlots[selectedSlot].Select();
     }
 
+    public void LoadInventoryFromData(List<Item> items)
+    {
+        foreach (Item item in items)
+        {
+            AddItem(item);
+        }
+    }
+
     private void Start()
     {
         ChangeSelectedSlot(0);

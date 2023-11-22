@@ -1588,7 +1588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5673060786108809118, guid: 929eb761e2556bf4fbc498166dd27a58, type: 3}
       propertyPath: toSceneIndex
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7147719685673389840, guid: 929eb761e2556bf4fbc498166dd27a58, type: 3}
       propertyPath: m_Name
@@ -3553,6 +3553,10 @@ PrefabInstance:
     - target: {fileID: 5673060786108809118, guid: 929eb761e2556bf4fbc498166dd27a58, type: 3}
       propertyPath: myTransition
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5673060786108809118, guid: 929eb761e2556bf4fbc498166dd27a58, type: 3}
+      propertyPath: toSceneIndex
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7147719685673389840, guid: 929eb761e2556bf4fbc498166dd27a58, type: 3}
       propertyPath: m_Name

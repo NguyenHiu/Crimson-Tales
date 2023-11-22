@@ -11,7 +11,14 @@ public struct RequestInfo
     public int demand;
     public Item sampleItem;
 
-    public RequestInfo(RequestInfo other)
+    public RequestInfo(string _n, int _d, Item _s)
+    {
+        name = _n;
+        demand = _d;
+        sampleItem = _s;
+    }
+
+    public RequestInfo(string v, RequestInfo other)
     {
         this.name = other.name;
         this.demand = other.demand;
@@ -26,7 +33,7 @@ public struct RequestInfo
 
 public class RequestManager : MonoBehaviour
 {
-    [SerializeField] RequestInfo requestInfo;
+    public RequestInfo requestInfo;
     int total;
 
     public void InitRequest(RequestInfo _requestInfo)

@@ -10,6 +10,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     [SerializeField] Item item;
     Image image;
     Transform parentTransform;
+    public Transform defaultParent;
 
     void Awake()
     {
@@ -22,6 +23,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     }
 
     public Item Item { get { return item; } }
+    public string ItemName { get { return item.ItemName; } }
 
     public void Init(Item newItem)
     {
@@ -33,7 +35,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public void OnBeginDrag(PointerEventData eventData)
     {
         parentTransform = transform.parent;
-        transform.SetParent(transform.root);
+        transform.SetParent(transform.root.Find("MainCanvas"));
         transform.SetAsLastSibling();
         image.raycastTarget = false;
     }

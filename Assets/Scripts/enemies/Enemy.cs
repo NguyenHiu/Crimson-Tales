@@ -182,6 +182,9 @@ public abstract class Enemy : MonoBehaviour
 
     public void DropItem()
     {
+        if (!dropItemPrefab || !itemDropped)
+            return;
+
         if (Random.Range(0, 11) / 10f > dropItemRate)
             return;
         print("drop item");

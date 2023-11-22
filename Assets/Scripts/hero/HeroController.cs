@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.IO;
 
 public class HeroController : MonoBehaviour
 {
@@ -93,7 +94,7 @@ public class HeroController : MonoBehaviour
 
     private void InventoryControl()
     {
-        if (Input.GetKeyDown(KeyCode.A) && openInventory == false)
+        if (Input.GetKeyDown(KeyCode.Q) && openInventory == false)
         {
             if (openChestInventory == false)
             {
@@ -233,17 +234,17 @@ public class HeroController : MonoBehaviour
 
     private void Move()
     {
-        if (canMove == false)
+        if (canMove == false || dialogOn == true)
             return;
         movementInput = Vector2.zero;
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.D))
         {
             movementInput.x = 1;
             animator.SetInteger("direction", 1);
             idleDir = Dir.Side;
             spriteRender.flipX = false;
         }
-        else if (Input.GetKey(KeyCode.Z))
+        else if (Input.GetKey(KeyCode.A))
         {
             movementInput.x = -1;
             animator.SetInteger("direction", 1);
@@ -251,13 +252,13 @@ public class HeroController : MonoBehaviour
             spriteRender.flipX = true;
         }
 
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.S))
         {
             movementInput.y = -1;
             animator.SetInteger("direction", 0);
             idleDir = Dir.Down;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.W))
         {
             movementInput.y = 1;
             animator.SetInteger("direction", 2);
@@ -348,8 +349,7 @@ public class HeroController : MonoBehaviour
         {
             // animator.SetTrigger("isDeath");
             LockMove();
-            audioManager.Death();
-            audioManager.StopMusicBackground();
+            StartCoroutine(D_E_A_T_H());
             hurtingCooldown = hurtingTime;
             alpha = 0;
             death = true;
@@ -362,6 +362,14 @@ public class HeroController : MonoBehaviour
             hurtingCooldown = hurtingTime;
             alpha = 0;
         }
+    }
+
+    IEnumerator D_E_A_T_H()
+    {
+        audioManager.Death();
+        audioManager.StopMusicBackground();
+        yield return new WaitForSeconds(1f);
+        GameObject.Find("EscapeManager").GetComponent<EscLayerManager>().PlayerDeath();
     }
 
     void ActingHurt()
@@ -459,7 +467,7 @@ public class HeroController : MonoBehaviour
         if (health > maxHealth) health = maxHealth;
     }
 
-    public int Health { get { return health; } }
+    public int Health { get { return health; } set { health = value; } }
     public int MaxHealth { get { return maxHealth; } }
 }
 

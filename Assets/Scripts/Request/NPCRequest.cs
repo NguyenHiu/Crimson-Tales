@@ -65,6 +65,7 @@ public class NPCRequest : MonoBehaviour, Interactable
                             (newState) =>
                             {
                                 dialogState = newState;
+                                print("new state: " + dialogState);
                             },
                             accept, reject));
     }
@@ -77,7 +78,7 @@ public class NPCRequest : MonoBehaviour, Interactable
     void UpdateRequestSign()
     {
         if (dialogState != DialogState.Waiting)
-            transform.GetChild(0).gameObject.SetActive(false);
+            transform.Find("RequestSign").gameObject.SetActive(false);
     }
 
     public void GoToNextState()

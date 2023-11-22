@@ -9,11 +9,12 @@ public class RequestController : MonoBehaviour
 {
     [SerializeField] GameObject requestGroupCanvas;
     Transform requestsCanvas;
-    [SerializeField] List<GameObject> requestManagers;
+    public List<GameObject> requestManagers;
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] GameObject requestPrefab;
 
     [SerializeField] RequestInfo DebugRequestInfo;
+
 
     void Start()
     {
