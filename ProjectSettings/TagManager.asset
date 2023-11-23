@@ -11,6 +11,8 @@ TagManager:
   - PlayerSword
   - Chest
   - NPC
+  - InformedObject
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -47,6 +49,9 @@ TagManager:
   m_SortingLayers:
   - name: background
     uniqueID: 1125439153
+    locked: 0
+  - name: shadow
+    uniqueID: 661607895
     locked: 0
   - name: Default
     uniqueID: 0

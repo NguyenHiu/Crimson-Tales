@@ -22,7 +22,7 @@ public class HealthHeartsController : MonoBehaviour
     public void DrawHearts()
     {
         ClearAllHearts();
-        int noHeartsNeedToDraw = (int)Math.Ceiling(player.maxHealth / 2.0);
+        int noHeartsNeedToDraw = (int)Math.Ceiling(player.MaxHealth / 2.0);
 
         // create player's max health
         for (int i = 0; i < noHeartsNeedToDraw; i++)
@@ -33,7 +33,7 @@ public class HealthHeartsController : MonoBehaviour
         // display player's current health
         for (int i = 0; i < hearts.Count; i++)
         {
-            int t = player.health - 2 * i;
+            int t = player.Health - 2 * i;
             if (t <= 0)
                 hearts[i].SetHeartImage(HeartStatus.Empty);
             else if (t >= 2)

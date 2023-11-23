@@ -7,20 +7,35 @@ using UnityEngine.PlayerLoop;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public Item item;
-    public Image image;
-    private Transform parentTransform;
+    [SerializeField] Item item;
+    Image image;
+    Transform parentTransform;
+    public Transform defaultParent;
+
+    void Awake()
+    {
+        GetImageComponent();
+    }
+
+    void GetImageComponent()
+    {
+        image = GetComponent<Image>();
+    }
+
+    public Item Item { get { return item; } }
+    public string ItemName { get { return item.ItemName; } }
 
     public void Init(Item newItem)
     {
         item = newItem;
-        image.sprite = item.sprite;
+        if (!image) GetImageComponent();
+        image.sprite = item.Sprite;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         parentTransform = transform.parent;
-        transform.SetParent(transform.root);
+        transform.SetParent(transform.root.Find("MainCanvas"));
         transform.SetAsLastSibling();
         image.raycastTarget = false;
     }

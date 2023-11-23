@@ -16,6 +16,7 @@ public class GoblinController : Enemy
     public override void Attack()
     {
         LockMove();
+        audioManager.GoblinSwordSound();
         switch (spriteRender.flipX)
         {
             case true:

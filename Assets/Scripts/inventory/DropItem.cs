@@ -19,7 +19,7 @@ public class DropItem : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         if (item)
-            spriteRenderer.sprite = item.sprite;
+            spriteRenderer.sprite = item.Sprite;
     }
 
     public Item GetItem()

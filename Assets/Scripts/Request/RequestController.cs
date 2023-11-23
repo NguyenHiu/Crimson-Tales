@@ -9,11 +9,12 @@ public class RequestController : MonoBehaviour
 {
     [SerializeField] GameObject requestGroupCanvas;
     Transform requestsCanvas;
-    [SerializeField] List<GameObject> requestManagers;
+    public List<GameObject> requestManagers;
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] GameObject requestPrefab;
 
     [SerializeField] RequestInfo DebugRequestInfo;
+
 
     void Start()
     {
@@ -22,6 +23,8 @@ public class RequestController : MonoBehaviour
 
     void Update()
     {
+        if (requestManagers.Count != 0) requestGroupCanvas.SetActive(true);
+        else requestGroupCanvas.SetActive(false);
         UpdateRequestsProcess();
     }
 

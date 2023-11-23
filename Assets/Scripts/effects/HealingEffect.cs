@@ -8,13 +8,12 @@ public class HealingEffect : Effect
 
     public override void Affect()
     {
-        hero.health += (int)heal;
-        if (hero.health > hero.maxHealth) 
-            hero.health = hero.maxHealth;
+        hero.Healing(heal);
     }
 
-    public override void ClearEffect(){}
-    public void SetHeal(int _heal) {
+    public override void ClearEffect() { }
+    public void SetHeal(int _heal)
+    {
         heal = _heal;
     }
 }

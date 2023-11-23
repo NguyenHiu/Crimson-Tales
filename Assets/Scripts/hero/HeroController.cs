@@ -6,87 +6,108 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.IO;
 
 public class HeroController : MonoBehaviour
 {
-    public int maxHealth, health;
-    public float speed = .08f;
-    public float normalSpeed = .08f;
-    public float collisionOffset = .05f;
-    public SwordController sword;
-    public Rigidbody2D rb;
-    public Animator animator;
-    private SpriteRenderer spriteRender;
-    public ContactFilter2D movementFilter;
-    private readonly List<RaycastHit2D> castCollisions = new();
-    private bool canMove = true;
-    private Facing idleSide;
+    Rigidbody2D rb;
+    Animator animator;
+    SpriteRenderer spriteRender;
+
+    // health
+    [SerializeField] int maxHealth, health;
+
+    // move
+    [SerializeField] float maxSpeed = .2f;
+    [SerializeField] float normalSpeed = .08f;
+    [SerializeField] float speed;
+    [SerializeField] float collisionOffset = .05f;
+    [SerializeField] SwordController sword;
+    [SerializeField] ContactFilter2D movementFilter;
+    readonly List<RaycastHit2D> castCollisions = new();
     Vector2 movementInput;
+    bool canMove = true;
+    Dir idleDir;
+
 
     // inventory
-    private bool openInventory = false;
-    private bool openChestInventory = false;
-    public Image toolbarCover;
-    public GameObject inventoryGroup;
-    public GameObject playerInventory;
-    public GameObject chestInventory;
-    public InventoryManager inventoryManager;
-    public Vector2 playerInventoryPos = new(0, 100);
-    public Vector2 playerInventoryInChestPos = new(400, 155);
+    bool openInventory = false;
+    bool openChestInventory = false;
+    [SerializeField] Image toolbarCover;
+    [SerializeField] GameObject inventoryGroup;
+    [SerializeField] GameObject playerInventory;
+    [SerializeField] GameObject chestInventory;
+    [SerializeField] InventoryManager inventoryManager;
+    Vector2 playerInventoryPos = new(0, 100);
+    Vector2 playerInventoryInChestPos = new(400, 155);
 
     // chest
-    public Transform openChest = null;
+    Transform openChest = null;
 
-    // effects
-    public List<Effect> effects = new();
-
-    // using potion
-    public float timeHold;
-    public readonly float timeToUsePotion = 1f;
-    public GameObject healthEffectPrefab;
-    public GameObject speedEffectPrefab;
+    // potion
+    float timeHold;
+    [SerializeField] float timeToUsePotion = 1f;
+    [SerializeField] GameObject healthEffectPrefab;
+    [SerializeField] GameObject speedEffectPrefab;
 
     // dialog
-    public bool dialogOn = false;
+    bool dialogOn = false;
 
-    public Item demoItem;
+    // hurt animation
+    float hurtingTime = 1f;
+    float hurtingCooldown = 0f;
+    float alpha = 1f;
+
+    // death aniamtion
+    bool death = false;
+
+    // sound
+    AudioManager audioManager;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
+        audioManager = FindAnyObjectByType<AudioManager>();
         canMove = true;
         timeHold = 0f;
+        speed = normalSpeed;
     }
 
     void Update()
     {
         if (!dialogOn)
         {
-            if (Input.GetKeyDown(KeyCode.F))
-                Interact();
+            if (Input.GetKeyDown(KeyCode.F)) Interact();
             InventoryControl();
             HandControl();
-            Move();
         }
+    }
+
+    void FixedUpdate()
+    {
+        ActingHurt();
+        Move();
     }
 
     private void InventoryControl()
     {
-        if (Input.GetKeyDown(KeyCode.A) && openInventory == false)
+        if (Input.GetKeyDown(KeyCode.Q) && openInventory == false)
         {
             if (openChestInventory == false)
             {
                 bool canFindAChest = GetItemsInNearestChest();
                 if (canFindAChest)
                 {
+                    audioManager.OpenChest();
                     playerInventory.GetComponent<RectTransform>().localPosition = playerInventoryInChestPos;
                     inventoryGroup.SetActive(true);
                     chestInventory.SetActive(true);
                     toolbarCover.enabled = false;
                     openChestInventory = true;
-                    animator.SetBool("isRunning", false);
+                    animator.SetBool("isRun", false);
                     LockMove();
                 }
             }
@@ -109,7 +130,8 @@ public class HeroController : MonoBehaviour
                 chestInventory.SetActive(false);
                 toolbarCover.enabled = false;
                 openInventory = true;
-                animator.SetBool("isRunning", false);
+                audioManager.OpenInventory();
+                animator.SetBool("isRun", false);
             }
             else
             {
@@ -127,11 +149,13 @@ public class HeroController : MonoBehaviour
         {
             if (obj.CompareTag("Chest"))
             {
+                obj.GetComponent<ChestManager>().OpenChestSpriteUpdate();
                 openChest = obj.GetComponent<Transform>();
-                Transform inventoryTransform = openChest.GetChild(0);
+                Transform inventoryTransform = openChest.Find("ChestInventory");
                 inventoryTransform.SetParent(chestInventory.transform);
-                inventoryTransform.localPosition = new(0, 0);
-                inventoryTransform.localScale = new(1, 1, 0);
+                inventoryTransform.GetComponent<RectTransform>().sizeDelta = new(196, 137);
+                inventoryTransform.localPosition = new(-28, -68);
+                inventoryTransform.localScale = new(4, 4, 0);
                 return true;
             }
         }
@@ -142,6 +166,7 @@ public class HeroController : MonoBehaviour
     {
         if (openChest != null)
         {
+            openChest.GetComponent<ChestManager>().CloseChestSpriteUpdate();
             chestInventory.transform.GetChild(1).SetParent(openChest);
             openChest = null;
         }
@@ -156,26 +181,30 @@ public class HeroController : MonoBehaviour
         if (selectedItem == null)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && (selectedItem.itemType == ItemType.Sword))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && (selectedItem.GetItemType == ItemType.Sword))
         {
             timeHold = 0;
-            sword.SetDamage(selectedItem.GetDamage());
+            sword.SetSwordProperties(selectedItem.Damage, selectedItem.ItemName);
             SwordAttack();
         }
 
-        else if ((selectedItem.itemType == ItemType.Potion) && Input.GetKey(KeyCode.Mouse0))
+        else if ((selectedItem.GetItemType == ItemType.Potion) && Input.GetKey(KeyCode.Mouse0))
         {
             if (timeHold == 0f)
+            {
                 speed = normalSpeed / 2;
+                audioManager.DrinkPotion();
+            }
 
             timeHold += Time.deltaTime;
 
             if (timeHold >= timeToUsePotion)
             {
                 timeHold = 0;
+                audioManager.StopDrinkPotion();
                 speed = normalSpeed;
                 Item potion = inventoryManager.GetSelectedItem(true);
-                if (potion.GetPotionType() == PotionType.Health)
+                if (potion.GetPotionType == PotionType.Health)
                 {
                     GameObject healEffectObject = Instantiate(healthEffectPrefab, transform);
                     HealingEffect healEffect = healEffectObject.GetComponent<HealingEffect>();
@@ -183,7 +212,7 @@ public class HeroController : MonoBehaviour
                     healEffect.SetHeal(3);
                     healEffect.Affect();
                 }
-                else if (potion.GetPotionType() == PotionType.Speed)
+                else if (potion.GetPotionType == PotionType.Speed)
                 {
                     GameObject speedEffectObject = Instantiate(speedEffectPrefab, transform);
                     SpeedEffect speedEffect = speedEffectObject.GetComponent<SpeedEffect>();
@@ -196,6 +225,7 @@ public class HeroController : MonoBehaviour
 
         else if (timeHold > 0)
         {
+            audioManager.StopDrinkPotion();
             speed = normalSpeed;
             timeHold = 0;
         }
@@ -204,35 +234,36 @@ public class HeroController : MonoBehaviour
 
     private void Move()
     {
-        if (canMove == false)
+        if (canMove == false || dialogOn == true)
             return;
         movementInput = Vector2.zero;
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKey(KeyCode.D))
         {
             movementInput.x = 1;
-            animator.SetInteger("idleIndex", 2);
-            idleSide = Facing.Right;
+            animator.SetInteger("direction", 1);
+            idleDir = Dir.Side;
+            spriteRender.flipX = false;
         }
-        else if (Input.GetKey(KeyCode.Z))
+        else if (Input.GetKey(KeyCode.A))
         {
             movementInput.x = -1;
-            animator.SetInteger("idleIndex", 1);
-            idleSide = Facing.Left;
+            animator.SetInteger("direction", 1);
+            idleDir = Dir.Side;
+            spriteRender.flipX = true;
         }
 
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.S))
         {
             movementInput.y = -1;
-            animator.SetInteger("idleIndex", 0);
-            idleSide = Facing.Down;
+            animator.SetInteger("direction", 0);
+            idleDir = Dir.Down;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (Input.GetKey(KeyCode.W))
         {
             movementInput.y = 1;
-            animator.SetInteger("idleIndex", 3);
-            idleSide = Facing.Up;
+            animator.SetInteger("direction", 2);
+            idleDir = Dir.Up;
         }
-
         bool success = TryMove(movementInput);
         if (!success)
         {
@@ -240,7 +271,7 @@ public class HeroController : MonoBehaviour
             if (!success)
                 success = TryMove(new Vector2(0, movementInput.y));
         }
-        animator.SetBool("isRunning", success);
+        animator.SetBool("isRun", success);
     }
 
     private bool TryMove(Vector2 movementInput)
@@ -265,10 +296,8 @@ public class HeroController : MonoBehaviour
 
         int Count = count;
         for (int i = 0; i < count; ++i)
-        {
             if (castCollisions[i].collider.CompareTag("Enemy"))
                 --Count;
-        }
 
         if (Count == 0)
         {
@@ -292,11 +321,10 @@ public class HeroController : MonoBehaviour
     public void SwordAttack()
     {
         LockMove();
-        animator.SetTrigger("isAttack");
-        if (idleSide == Facing.Down) sword.AttackDown();
-        else if (idleSide == Facing.Left) sword.AttackLeft();
-        else if (idleSide == Facing.Right) sword.AttackRight();
-        else sword.AttackUp();
+        if (animator.GetBool("Attack") == false)
+            audioManager.SwordSound();
+        animator.SetBool("Attack", true);
+        sword.Attack(idleDir);
     }
 
     public void LockMove()
@@ -309,43 +337,90 @@ public class HeroController : MonoBehaviour
     {
         canMove = true;
         sword.StopAttack();
+        animator.SetBool("Attack", false);
         print("unlock move");
     }
 
     public void TakeDamage(int damage)
     {
+        if (death) return;
         health -= damage;
         if (health <= 0)
         {
-            animator.SetTrigger("isDeath");
+            // animator.SetTrigger("isDeath");
             LockMove();
+            StartCoroutine(D_E_A_T_H());
+            hurtingCooldown = hurtingTime;
+            alpha = 0;
+            death = true;
         }
         else
         {
             UnlockMove();
-            animator.SetTrigger("isHurt");
+            audioManager.HeroDamageAudio();
+            // animator.SetTrigger("isHurt");
+            hurtingCooldown = hurtingTime;
+            alpha = 0;
         }
+    }
+
+    IEnumerator D_E_A_T_H()
+    {
+        audioManager.Death();
+        audioManager.StopMusicBackground();
+        yield return new WaitForSeconds(1f);
+        GameObject.Find("EscapeManager").GetComponent<EscLayerManager>().PlayerDeath();
+    }
+
+    void ActingHurt()
+    {
+        if (hurtingCooldown <= 0f)
+        {
+            if (death)
+            {
+                DestroyHero();
+                return;
+            }
+            hurtingCooldown = 0f;
+            alpha = 1f;
+            spriteRender.color = new Vector4(
+                spriteRender.color.r,
+                spriteRender.color.g,
+                spriteRender.color.b,
+                alpha
+            );
+            return;
+        }
+        alpha = alpha * 2 + Time.deltaTime;
+        if (alpha >= 1f) alpha -= 1f;
+
+        spriteRender.color = new Vector4(
+            spriteRender.color.r,
+            spriteRender.color.b,
+            spriteRender.color.g,
+            alpha
+        );
+
+        hurtingCooldown -= Time.deltaTime;
     }
 
     public void DestroyHero()
     {
-        if (gameObject)
-            Destroy(gameObject);
+        if (gameObject) Destroy(gameObject);
     }
 
     public bool ReceiveItem(Item item)
     {
-        if (item)
-            return inventoryManager.AddItem(item);
+        if (item) return inventoryManager.AddItem(item);
         return false;
     }
 
     void Interact()
     {
         Vector2 direction = new(1, 0);
-        if (this.idleSide == Facing.Left) direction = new(-1, 0);
-        else if (this.idleSide == Facing.Down) direction = new(0, -1);
-        else if (this.idleSide == Facing.Up) direction = new(0, 1);
+        if (idleDir == Dir.Side) direction = new(spriteRender.flipX ? -1 : 1, 0);
+        else if (idleDir == Dir.Down) direction = new(0, -1);
+        else if (idleDir == Dir.Up) direction = new(0, 1);
 
         int count = rb.Cast(
             direction,
@@ -354,19 +429,51 @@ public class HeroController : MonoBehaviour
             .4f);
         foreach (RaycastHit2D obj in castCollisions)
         {
-            if (obj.transform.CompareTag("NPC"))
+            if (obj.transform.CompareTag("NPC") ||
+                obj.transform.CompareTag("InformedObject"))
             {
                 print("let's interact");
-                obj.transform.GetComponent<Interactable>().Interact(this);
+                obj.transform.GetComponent<Interactable>().Interact();
             }
         }
     }
+
+    public void SetDialogOn()
+    {
+        dialogOn = true;
+    }
+
+    public void SetDialogOff()
+    {
+        dialogOn = false;
+    }
+
+    public void AddSpeed(float add)
+    {
+        speed += add;
+        if (speed > maxSpeed)
+            speed = maxSpeed;
+    }
+
+    public void SlowDown(float s)
+    {
+        if (speed > s) speed -= s;
+        else speed = 0;
+    }
+
+    public void Healing(int h)
+    {
+        health += h;
+        if (health > maxHealth) health = maxHealth;
+    }
+
+    public int Health { get { return health; } set { health = value; } }
+    public int MaxHealth { get { return maxHealth; } }
 }
 
-enum Facing
+public enum Dir
 {
     Down = 0,
-    Left = 1,
-    Right = 2,
-    Up = 3,
+    Side = 1,
+    Up = 2,
 }

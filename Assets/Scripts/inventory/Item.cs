@@ -3,31 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Scriptable object/Item")]
+[CreateAssetMenu(menuName = "Scriptable object/Item")]
 public class Item : ScriptableObject
 {
-    public Sprite sprite;
-    public String itemName;
-    public String description;  
-    public ItemType itemType;
-    public int damage;
-    public PotionType potionType;
+    [SerializeField] Sprite sprite;
+    [SerializeField] string itemName;
+    [SerializeField] string description;
+    [SerializeField] ItemType itemType;
+    [SerializeField] int damage;
+    [SerializeField] PotionType potionType;
 
-    public int GetDamage() {
-        return damage;
-    }
-
-    public PotionType GetPotionType() {
-        return potionType;
-    }
+    public int Damage { get { return damage; } }
+    public string ItemName { get { return itemName; } }
+    public PotionType GetPotionType { get { return potionType; } }
+    public ItemType GetItemType { get { return itemType; } }
+    public Sprite Sprite { get { return sprite; } }
 }
 
-public enum ItemType {
+public enum ItemType
+{
     Potion,
-    Sword
+    Sword,
+    Herb
 }
 
-public enum PotionType {
+public enum PotionType
+{
     Health,
     Speed
 }

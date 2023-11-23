@@ -1,29 +1,55 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPCRequest : MonoBehaviour, Interactable
 {
     [SerializeField] string NPCName;
     [SerializeField] List<Dialog> dialogs;
-    [SerializeField] DialogManager dialogManager;
     [SerializeField] bool containRequest;
+    [SerializeField] Transform requestSign;
+    [SerializeField] Item rewardItem;
+    InventoryManager inventoryManager;
+    DialogManager dialogManager;
     DialogState dialogState = DialogState.Waiting;
+    AudioManager audioManager;
 
     void Start()
     {
+        audioManager = FindAnyObjectByType<AudioManager>();
         if (!dialogManager)
             dialogManager = FindAnyObjectByType<DialogManager>();
+        if (!inventoryManager)
+            inventoryManager = FindAnyObjectByType<InventoryManager>();
     }
 
-    public void Interact(HeroController hero)
+    void Update()
     {
+        UpdateRequestSign();
+    }
+
+    public void Interact()
+    {
+        audioManager.NPCTalk();
         if (dialogState == DialogState.Processing &&
             dialogManager.TheRequestIsDone(
-                dialogs[(int)DialogState.Waiting].Request
+                dialogs[(int)DialogState.Waiting].Request, false
             ))
         {
+            if (!GiveReward())
+            {
+                StartCoroutine(dialogManager.ShowDialog(
+                    "???", dialogs[(int)DialogState.CannotGiveReward],
+                    dialogState,
+                    (x) => { }
+                ));
+                return;
+            }
             dialogState = DialogState.Complete;
+            dialogManager.TheRequestIsDone(
+                dialogs[(int)DialogState.Waiting].Request, true
+            );
         }
 
         Dialog accept = null, reject = null;
@@ -36,8 +62,23 @@ public class NPCRequest : MonoBehaviour, Interactable
         StartCoroutine(dialogManager.ShowDialog(
                             NPCName, dialogs[(int)dialogState],
                             dialogState,
-                            (newState) => { dialogState = newState; },
+                            (newState) =>
+                            {
+                                dialogState = newState;
+                                print("new state: " + dialogState);
+                            },
                             accept, reject));
+    }
+
+    bool GiveReward()
+    {
+        return inventoryManager.AddItem(rewardItem);
+    }
+
+    void UpdateRequestSign()
+    {
+        if (dialogState != DialogState.Waiting)
+            transform.Find("RequestSign").gameObject.SetActive(false);
     }
 
     public void GoToNextState()
@@ -69,4 +110,5 @@ public enum DialogState
     PlayerAccept = 3,
     PlayerReject = 4,
     None = 5,
+    CannotGiveReward = 6,
 }

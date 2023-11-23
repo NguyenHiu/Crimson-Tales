@@ -11,16 +11,16 @@ public class DetectHero : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("PlayerHitbox"))
         {
-            Transform playerTransform = other.GetComponent<HeroController>().transform;
+            Transform playerTransform = other.GetComponentInParent<HeroController>().transform;
             enemy.SetAStarDestination(playerTransform);
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("PlayerHitbox"))
             enemy.SetAStarDestination(null);
     }
 }

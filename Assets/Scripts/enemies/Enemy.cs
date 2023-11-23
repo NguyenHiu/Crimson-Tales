@@ -38,6 +38,9 @@ public abstract class Enemy : MonoBehaviour
     public Item itemDropped;
     public GameObject dropItemPrefab;
 
+    // audio
+    protected AudioManager audioManager;
+
 
     // AI enemy
     protected AIPath aIPath;
@@ -52,6 +55,7 @@ public abstract class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRender = GetComponent<SpriteRenderer>();
         text = GetComponentInChildren<TextMeshPro>();
+        audioManager = FindAnyObjectByType<AudioManager>();
         aIPath = GetComponent<AIPath>();
         specificSpeed = baseSpeed + Random.Range(1, 11) * .1f;
         aIPath.maxSpeed = specificSpeed;
@@ -162,6 +166,7 @@ public abstract class Enemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        audioManager.GoblinDamageAudio();
         if (health <= 0)
         {
             animator.SetTrigger("isDeath");
@@ -177,6 +182,9 @@ public abstract class Enemy : MonoBehaviour
 
     public void DropItem()
     {
+        if (!dropItemPrefab || !itemDropped)
+            return;
+
         if (Random.Range(0, 11) / 10f > dropItemRate)
             return;
         print("drop item");
@@ -184,6 +192,7 @@ public abstract class Enemy : MonoBehaviour
         dropItemGO.transform.SetParent(transform.parent);
         dropItemGO.transform.position = transform.position;
         DropItem dropItem = dropItemGO.GetComponent<DropItem>();
+        dropItem.GetComponent<Transform>().Rotate(0, 0, 30);
         dropItem.SetItemDropped(itemDropped);
         dropItem.Init();
     }
@@ -229,7 +238,8 @@ public abstract class Enemy : MonoBehaviour
                 aIPath.canMove = true;
                 aIPath.canSearch = true;
             }
-            aStarDestination.target = _transform;
+            Transform rielHero = _transform;
+            aStarDestination.target = rielHero;
         }
     }
 

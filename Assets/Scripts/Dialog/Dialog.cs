@@ -7,7 +7,6 @@ public class Dialog
 {
     [SerializeField] List<string> lines;
     [SerializeField] RequestInfo requestInfo;
-    [SerializeField] List<Item> items;
 
     public List<string> Lines
     {
@@ -17,10 +16,5 @@ public class Dialog
     public RequestInfo Request
     {
         get { return requestInfo; }
-    }
-
-    public List<Item> Items
-    {
-        get { return items; }
     }
 }

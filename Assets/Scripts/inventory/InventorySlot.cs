@@ -6,24 +6,28 @@ using UnityEngine.EventSystems;
 
 public class InventorySlot : MonoBehaviour, IDropHandler
 {
-    public Image image;
-    public Color selectedColor, deselectedColor;
+    [SerializeField] Image image;
+    [SerializeField] Sprite selectedSprite, unselectedSprite;
 
-    private void Awake() {
+    private void Awake()
+    {
         Deselect();
     }
 
-    public void Select() {
-        image.color = selectedColor;
+    public void Select()
+    {
+        image.sprite = selectedSprite;
     }
 
-    public void Deselect() {
-        image.color = deselectedColor;
+    public void Deselect()
+    {
+        image.sprite = unselectedSprite;
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (transform.childCount == 0) {
+        if (transform.childCount == 0)
+        {
             InventoryItem item = eventData.pointerDrag.GetComponent<InventoryItem>();
             item.SetNewParentTransform(transform);
         }
