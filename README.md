@@ -56,6 +56,8 @@ vào khu rừng bí ẩn.
 
 
 ## Gameplay
+[![Watch the video](main_menu.png)](https://www.youtube.com/watch?v=RbMCzkb3FRA)
+
 
 ## Thành viên nhóm Dugtrio
 |   MSSV   |            Họ tên               | Profile  
