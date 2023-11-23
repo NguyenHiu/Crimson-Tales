@@ -31,42 +31,40 @@ public class EscLayerManager : MonoBehaviour
 
     public void QuitGame()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        if (SceneManager.GetActiveScene().buildIndex != 1)
         {
-            StartCoroutine(Animation());
-            return;
-        }
+            NPCController npccontroller = FindAnyObjectByType<NPCController>();
+            if (npccontroller) npccontroller.Save();
+            StateController stateController = FindAnyObjectByType<StateController>();
+            if (stateController) stateController.Save();
 
-        NPCController npccontroller = FindAnyObjectByType<NPCController>();
-        if (npccontroller) npccontroller.Save();
-        StateController stateController = FindAnyObjectByType<StateController>();
-        if (stateController) stateController.Save();
-
-        string data = "";
-        foreach (InventorySlot inventorySlot in inventoryManager.inventorySlots)
-        {
-            if (inventorySlot.transform.childCount == 0)
-                data += ",";
-            else data += inventorySlot.
-                         GetComponentInChildren<InventoryItem>().
-                         ItemName + ",";
+            string data = "";
+            foreach (InventorySlot inventorySlot in inventoryManager.inventorySlots)
+            {
+                if (inventorySlot.transform.childCount == 0)
+                    data += ",";
+                else data += inventorySlot.
+                             GetComponentInChildren<InventoryItem>().
+                             ItemName + ",";
+            }
+            data += SceneManager.GetActiveScene().buildIndex.ToString() + ",";
+            data += heroController.transform.position.x.ToString() + "," +
+                heroController.transform.position.y.ToString() + "," +
+                heroController.Health.ToString() + "|";
+            foreach (GameObject requestManagerOB in requestController.requestManagers)
+            {
+                RequestInfo requestInfo = requestManagerOB.GetComponent<RequestManager>().requestInfo;
+                data += requestInfo.name + "," + requestInfo.demand.ToString() + "," + requestInfo.sampleItem.ItemName;
+            }
+            SAVE.SaveFile(data, "Data\\gameData");
         }
-        data += SceneManager.GetActiveScene().buildIndex.ToString() + ",";
-        data += heroController.transform.position.x.ToString() + "," +
-            heroController.transform.position.y.ToString() + "," +
-            heroController.Health.ToString() + "|";
-        foreach (GameObject requestManagerOB in requestController.requestManagers)
-        {
-            RequestInfo requestInfo = requestManagerOB.GetComponent<RequestManager>().requestInfo;
-            data += requestInfo.name + "," + requestInfo.demand.ToString() + "," + requestInfo.sampleItem.ItemName;
-        }
-        SAVE.SaveFile(data, "Data\\gameData");
         StartCoroutine(Animation());
+        // Application.Quit();
     }
 
     public void PlayerDeath()
     {
-        DirectoryInfo dataDir = new DirectoryInfo(Application.dataPath + "\\Data\\");
+        DirectoryInfo dataDir = new(Application.dataPath + "\\Data\\");
         foreach (FileInfo file in dataDir.GetFiles())
             file.Delete();
         StartCoroutine(Animation());
@@ -76,7 +74,16 @@ public class EscLayerManager : MonoBehaviour
     {
         animator.SetTrigger("End");
         yield return new WaitForSeconds(1f);
-        Destroy(GameObject.Find("TobeDestroyed"));
-        SceneManager.LoadScene(5);
+        DestroyAll();
+        SceneManager.LoadScene(0);
+    }
+
+    void DestroyAll()
+    {
+        DontDestroyOnLoad[] gos = Resources.FindObjectsOfTypeAll<DontDestroyOnLoad>();
+        foreach (DontDestroyOnLoad go in gos)
+        {
+            Destroy(go.gameObject);
+        }
     }
 }

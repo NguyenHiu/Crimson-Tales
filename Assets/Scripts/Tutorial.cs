@@ -5,15 +5,14 @@ using UnityEngine.Video;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField]
     GameObject moveTutorial, chatTutorial, chestTutorial,
     drinkPotionTutorial, attackTutorial, finalText;
-    [SerializeField] GameObject tutorialGroup;
+    GameObject tutorialGroup;
     [SerializeField] GameObject collider1;
     [SerializeField] GameObject requestSign;
-    [SerializeField] HeroController heroController;
-    [SerializeField] InventoryManager inventoryManager;
-    [SerializeField] GameObject chestInventory;
+    HeroController heroController;
+    InventoryManager inventoryManager;
+    GameObject chestInventory;
     [SerializeField] Item speed, health, sword;
     [SerializeField] GameObject goblin;
     [SerializeField] GameObject tinyRocks;
@@ -22,6 +21,20 @@ public class Tutorial : MonoBehaviour
 
     void Start()
     {
+        Canvas mainCanvas = FindAnyObjectByType<Canvas>();
+        tutorialGroup = mainCanvas.transform.Find("Tutorials").gameObject;
+        moveTutorial = tutorialGroup.transform.Find("Move").gameObject;
+        chatTutorial = tutorialGroup.transform.Find("Chat").gameObject;
+        chestTutorial = tutorialGroup.transform.Find("Chest").gameObject;
+        drinkPotionTutorial = tutorialGroup.transform.Find("Potion").gameObject;
+        attackTutorial = tutorialGroup.transform.Find("Attack").gameObject;
+        finalText = tutorialGroup.transform.Find("Final").gameObject;
+        heroController = FindAnyObjectByType<HeroController>();
+        inventoryManager = FindAnyObjectByType<InventoryManager>();
+        chestInventory = mainCanvas.transform.
+                                Find("InventoryGroup").
+                                Find("ChestInventory").gameObject;
+
         heroController.Health = 6;
         moveTutorial.SetActive(true);
         chatTutorial.SetActive(false);

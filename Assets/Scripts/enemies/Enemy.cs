@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Numerics;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Pathfinding;
-using UnityEditor.MPE;
 
 public abstract class Enemy : MonoBehaviour
 {
