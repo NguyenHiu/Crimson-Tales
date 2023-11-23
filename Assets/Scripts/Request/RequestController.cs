@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class RequestController : MonoBehaviour
 {
     [SerializeField] GameObject requestGroupCanvas;
-    Transform requestsCanvas;
+    [SerializeField] Transform requestsCanvas;
     public List<GameObject> requestManagers;
     [SerializeField] InventoryManager inventoryManager;
     [SerializeField] GameObject requestPrefab;
@@ -16,10 +15,10 @@ public class RequestController : MonoBehaviour
     [SerializeField] RequestInfo DebugRequestInfo;
 
 
-    void Start()
-    {
-        requestsCanvas = requestGroupCanvas.transform.GetChild(1);
-    }
+    // void Awake()
+    // {
+    //     requestsCanvas = requestGroupCanvas.transform.GetChild(1);
+    // }
 
     void Update()
     {
@@ -65,6 +64,7 @@ public class RequestController : MonoBehaviour
 
     public void AddNewRequest(RequestInfo requestInfo)
     {
+        print("Add new request in reuqest controller");
         GameObject newRequestOB = Instantiate(requestPrefab);
         newRequestOB.transform.SetParent(requestsCanvas);
         newRequestOB.transform.position =

@@ -366,6 +366,7 @@ public class HeroController : MonoBehaviour
 
     IEnumerator D_E_A_T_H()
     {
+        animator.SetBool("isRun", false);
         audioManager.Death();
         audioManager.StopMusicBackground();
         yield return new WaitForSeconds(1f);

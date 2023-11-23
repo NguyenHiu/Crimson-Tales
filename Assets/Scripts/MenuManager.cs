@@ -26,9 +26,8 @@ public class MenuManager : MonoBehaviour
     {
         animator.SetActive(true);
         animator.GetComponent<Animator>().SetTrigger("End");
-
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(6);
     }
 
     public void QuitGame()

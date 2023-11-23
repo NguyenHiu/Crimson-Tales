@@ -13,7 +13,7 @@ public class MySceneManager : MonoBehaviour
     IEnumerator MyUpdate()
     {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
         HeroController x = FindAnyObjectByType<HeroController>();
         x.transform.position = new Vector3(10, -2, 0);
     }
