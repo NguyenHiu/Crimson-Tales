@@ -1,25 +1,27 @@
 # Crimson Tales
 
-## RPG (Role-playing game)
-*RPG (Role-Playing Game)* là thể loại game rất được yêu thích bởi đại đa số
-game thủ bởi lối chơi nhập vai cuốn hút với sự đa dạng về vật phẩm, nhiệm
-vụ, kẻ thù,... và thường đi theo một hoặc một vài cốt truyện được nhà thiết
-kế game cài đặt.
+- Category: 2D RPG - Role-Playing Game
+- Language: Vietnamese
 
-Từ những năm 1970, những viên gạch đầu tiên đặt nền móng cho sự phát
-triển của RPG trên các thiết bị điện tử phải kể đến là tựa game Dungeon
-(1975), được lấy cảm hứng từ tựa game Dungeons & Dragons - một game
-thể loại pen-and-paper RPG được chơi mà không cần các thiết bị điện tử,
-cùng với sự phát triển của công nghệ, nhiều thiết bị hỗ trợ chơi game ra đời,
-nổi bật trong đó là Gamepad giúp cho việc chơi game dễ tiếp cận và thú vị hơn.
 
-## Mục tiêu của game *Crimson Tales*
-*Crimson Tales*, là tựa game mang thể loại RPG được phát triển bởi nhóm
-**Dugtrio** với mục tiêu là luyện tập các kiến thức đã học trong môn Phát triển
-Game, ngoài ra còn là để các thành viên trong nhóm có cơ hội thỏa niềm
-đam mê của mình với lĩnh vực phát triển game.
+## Gameplay
 
-## Cốt truyện của Crimson Tales
+[![Watch the video](MainMenu.png)](https://www.youtube.com/watch?v=RbMCzkb3FRA)
+
+
+## Story line
+The player takes on the role of EIRA, the daughter of Count ROBERT, a swordsmanship prodigy and the pride of the VICTOR family, a loyal and pioneering clan that achieved many victories in the War of the Drum Century. However, later on, the VICTOR family falls victim to the machinations of the Royal family due to the power and reputation of the VICTOR clan posing a threat to the royal position.
+
+Born with a natural talent for swordsmanship, EIRA carries the responsibility of restoring her family's status. Recognizing her duty, EIRA tirelessly pursues learning and self-improvement, seemingly bringing the revival of her family's glory closer than ever.
+
+![alt text](EIRA.png)
+
+However, things were not as easy as that. The aristocratic circles sensed this change and, fearing the emergence of a powerful family, actively worked to undermine the VICTOR clan. The culmination was a direct assault on the stronghold of the VICTOR family, where almost every member of the clan was slaughtered.
+
+Unwilling to let the flicker of hope be extinguished, Count ROBERT placed all his trust in his daughter and devoted all remaining resources to pave the way for EIRA's escape. Yet, escaping was not as simple as it seemed. The malicious aristocracy, desiring to completely erase the presence of the VICTOR family from the world, relentlessly besieged the clan's stronghold. Just when it appeared that everything had come to an end, the arrival of Duke HENRY brought a glimmer of hope for EIRA. With the assistance of Duke HENRY, EIRA safely fled the attacked area and ventured into the mysterious forest.
+
+<!-- Vietnamese -->
+<!-- ## Cốt truyện của Crimson Tales
 Người chơi vào vai *EIRA*, con gái của Bá tước *ROBERT*, một thiên tài kiếm
 thuật và là niềm tự hào của gia tộc *VICTOR*, một gia tộc trung thành, tiên
 phong và giành nhiều chiến công trong cuộc chiến ở Thế Kỷ Trống, tuy nhiên
@@ -50,19 +52,5 @@ tước *HENRY* đã mở ra một tia hy vọng cho *EIRA*, nhờ sự giúp đ
 tước *HENRY* mà *EIRA* đã an toàn chạy ra khỏi khu vực tấn công và tiến
 vào khu rừng bí ẩn.
 
-## Poster Game
-
-![alt text](GamePoster.png)
-
-
 ## Gameplay
-[![Watch the video](main_menu.png)](https://www.youtube.com/watch?v=RbMCzkb3FRA)
-
-
-## Thành viên nhóm Dugtrio
-|   MSSV   |            Họ tên               | Profile  
-|----------------|-------------------------------|----------------------------
-|    20120017    |Phan Quốc Kỳ | [@phanquocky](https://github.com/phanquocky)            
-|    20120368    |Nguyễn Minh Tâm | [@tam18902](https://github.com/tam18902)           
-|    20120476    |Nguyễn Trọng Hiếu | [@NguyenHiu](https://github.com/NguyenHiu)
-|    20120504    |Nhan Gia Khâm | [@Newplayers12](https://github.com/Newplayers12)
+[![Watch the video](MainMenu.png)](https://www.youtube.com/watch?v=RbMCzkb3FRA)
